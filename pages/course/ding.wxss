@@ -1,0 +1,14 @@
+.sttitle{ padding: 10px 0; position:  absolute;top:5px;left:35%;}
+.shit{padding: 20px 0; height: 30px; line-height: 30px;}
+.stimage{ padding: 25px 0px; text-align: center;}
+.stimage image{ height:200px; height: 200px; border-radius: 5px; }
+.tijiao{ padding: 10px 0}
+.tijiao .list{ clear: both; height: 45px; line-height: 45px }
+.tijiao .list .text_input{ height: 45px; line-height: 45px }
+
+.sts {padding-top: 20px;}
+.sts .button1 {line-height:40px;
+height:40px;
+border-radius:20px;
+}
+.pop_btn{padding: 0 !important; margin-top: 5px!important}

@@ -1,0 +1,7 @@
+.top{padding:20px; background-color: #ffa5a5; height:150px }
+.top .logo image{ width: 80px; height: 80px;}
+ .jiaoshi{ padding: 5px 0;}
+.jiaoshi .list{ height: 40px; line-height: 40px;}
+.jiaoshi .list image{ width: 25px; height: 25px; margin-top: 10px}
+
+.cont_title{ padding: 15px 0;}

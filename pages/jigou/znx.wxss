@@ -1,0 +1,13 @@
+.top{padding:20rpx 10rpx; }
+
+
+.shizi{ padding-top: 10px;}
+.shizi .nc{ padding: 15px 0;}
+.shizi .nc .bbe{ padding: 10px 0;}
+.shizi .nc image{ width: 90%; height:50px;  margin: 0 auto; border-radius: 3px;}
+
+.sts {padding-top: 20px;}
+.sts .button1 {line-height:40px; border: 0;
+height:40px;
+border-radius:20px;
+}

@@ -1,0 +1,9 @@
+.top{padding:20rpx 10rpx; }
+
+.xxq  image{ width: 100%; height:150px;  margin: 0 auto; border-radius: 3px;}
+
+.sts {padding-top: 20px;}
+.sts .button1 {line-height:40px; border: 0;
+height:40px;
+border-radius:20px;
+}

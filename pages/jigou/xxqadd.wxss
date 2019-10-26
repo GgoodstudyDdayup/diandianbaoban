@@ -1,0 +1,12 @@
+.tijiao{ padding: 10px 0}
+.tijiao .list{ clear: both;  line-height: 45px; padding-top: 15px}
+.tijiao .list .text_input{ height: 45px; line-height: 45px }
+ 
+ .sctp{ position:static;}
+ .dels{ width: 20px; height: 20px;margin:0px 0px 40px -10px;
+ top: 0; right: 0;}
+.sts {padding-top: 20px;}
+.sts .button1 {line-height:40px; border: 0;
+height:40px;
+border-radius:20px;
+}

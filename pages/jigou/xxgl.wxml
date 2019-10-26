@@ -1,0 +1,24 @@
+<view class="page">
+
+<view class='widt clear xxq'>
+<block wx:if="{{xxq}}">
+ <block wx:for="{{xxq}}" wx:for-index="idx" wx:key="idx" >
+     <view class='w50 fl_l'>
+      <view class='w95'>
+      <view><image src='{{item}}'> </image></view>
+      <view style='padding:5px 0'><view bindtap='shanchu' data-ds='{{item}}' class='button1 bg_hs tc color_danhui' style='height:30px; line-height:30px;border-radius:15px;'>删除</view></view>
+      </view>
+     </view>
+
+  </block>
+ </block>
+  <view class='clear sts'>
+       <button bindtap='link' data-link='xxqadd?id={{organization_id}}' class='button1 bg_cs tc color_bai'>新增</button>
+  </view>
+
+</view>
+
+<view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+</view>

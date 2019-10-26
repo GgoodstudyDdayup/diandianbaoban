@@ -1,0 +1,37 @@
+<view class="page">
+  <view class='bbe' style='padding-top:20px;height:10px;'>
+  </view>
+  <view class='bg_bs font_16 w30 tc sttitle'>在线评价</view>
+  <view class='widt clear'>
+    <view class='stimage'><image src='{{detail.logo}}'></image></view>
+    <view class='font_16 tc' style='padding-bottom:20px;'>{{detail.name}}</view>
+  </view>
+  <view class='height_10 bg_hs'></view>
+
+  <view class='widt clear'>
+    <view class='tijiao'>
+    <form bindsubmit="formSubmit">
+       <view class='bbe list star'>
+         <view class='fl_l w20'>评分：</view>
+         <view class='fl_r w80'>
+         <image class='stars' bindtap="selectRight" data-no="{{item}}" wx:for="{{stardata}}" src="{{key>=item? '../../images/star.png': '../../images/starg.png'}}" />
+         </view>
+       </view>
+       <view style='padding:10px 0'>
+         <view>内容：</view>
+         <view class='bbe bte bre ble' style='margin:10px 0;'>
+         <textarea placeholder="在文本框中输入评价内容" name='textarea'  style='height:100px;'/>
+         </view>
+       </view>
+      <view class='clear sts'>
+       <button form-type="submit" class='button1 bg_cs tc color_bai'>立即评价</button>
+      </view>
+    </form>
+    </view>
+  </view>
+
+<view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+
+</view>

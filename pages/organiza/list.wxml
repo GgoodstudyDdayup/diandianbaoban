@@ -1,0 +1,70 @@
+<view class="page">
+   <view class='top widt'>
+   <form bindsubmit="formSubmit">
+    <view class='search'>
+      <view class='fl_l w85'><input class="text_input" placeholder="请输入机构名称"  name="keyword" /></view>
+      <view class='fl_r w15' ><button form-type="submit" class='submits'><image src='../../images/search.png'></image></button></view>
+      
+    </view>
+   </form>
+   </view>
+
+<view class="mask" wx:if="{{hsshow}}" catchtouchmove="true" bindtap='bb'>
+</view>
+<view class="swiper-tab ">
+ <view class='widt'>
+ <view class="swiper-tab-list font_14" data-current="4" bindtap="clickPerson" >{{qyname}}<image src='../../images/icon.png'></image></view>
+  <view class="swiper-tab-list font_14" data-current="1" bindtap="clickPerson" >{{flname}}<image src='../../images/icon.png'></image></view>
+  <view class="swiper-tab-list font_14 " data-current="3"  bindtap="clickPerson">{{xlname}}<image src='../../images/icon.png'></image></view>
+ <view class='bg_bs xiala' wx:if="{{qyMask}}" catchtouchmove="true">
+    <view class='w85 bbe' wx:for="{{district_list}}" wx:for-index="idx" wx:key="idx" bindtap='link' data-district='{{item.district_id}}' data-qyname="{{item.district}}">{{item.district}}</view>
+  </view>
+   <view class='bg_bs xiala' wx:if="{{flMask}}" catchtouchmove="true">
+      <view class=''>
+      <view class='fl_l w40 bg_hs tc'>
+      <view  wx:for="{{category_list}}" wx:for-index="idx" wx:key="idx" bindtap='erjifenlie' data-id='{{item.id}}'>{{item.name}}</view>
+      </view>
+      <view class='fl_l w60 tc'>
+       <view  wx:for="{{category_list2}}" wx:for-index="idx" wx:key="idx" bindtap='link' data-category='{{item.parent_id}}' data-category2='{{item.id}}' data-flname="{{item.name}}">{{item.name}}</view>
+      </view>
+     </view>
+  </view>
+  <view class='bg_bs xiala' wx:if="{{xlMask}}" catchtouchmove="true">
+     <view class='w85 bbe' bindtap='link'  data-sort='1' data-xlname='从高到低'>评价从高到低</view>
+     <view class='w85 bbe' bindtap='link'  data-sort='1' data-xlname='从低到高'>评价从低到高</view>
+  </view>
+ </view>
+</view>
+
+<view class='widt ages clear bte'>
+  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='list?age_id=0'>全部</view>
+  <view class='button bg_bts tc font_12 fl_l item'bindtap='link' data-link='list?age_id=1'>0-3岁</view>
+  <view class='button bg_bts tc font_12 fl_l item'bindtap='link' data-link='list?age_id=2'>3-6岁</view>
+  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='list?age_id=3'>6-12岁</view>
+  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='list?age_id=4'>12-15岁</view>
+  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='list?age_id=5'>15-18岁</view>
+</view>
+<view class='widt clear baokuan'>
+  <view class='clear'>
+    <block wx:for="{{organization_list}}" wx:for-index="idx" wx:key="idx">
+      <navigator url='detail?id={{item.id}}' class='item bbe'>
+       <view class='fl_l w35' style='margin-right:5%;'><image src='{{item.logo}}' ></image></view>
+       <view class='fl_l w60'>
+         <view class='font_16'>{{item.name}}</view>
+         <view class='clear color_hui'><view class='fl_l'>{{item.address}}</view><view class='fl_r'>{{item.juli}}</view></view>
+         <view class='clear gou'>
+           <block wx:for="{{item.shuoming}}" wx:for-item="bb" >
+           <view class='fl_l' style='margin-rgint:5px'><view class='font_14 bg_bts  button' style='margin-right:5px; padding:0 5px;'>{{bb}}</view></view>
+           
+           </block>
+         </view>
+       </view>
+      </navigator>
+    </block>
+  </view>
+</view>
+
+<view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+</view>

@@ -1,0 +1,25 @@
+<view class='widt clear'>
+    <view class='tijiao bte'>
+    <form bindsubmit="formSubmit">
+       
+    <view class=' list clear'>
+         <view class='fl_l w30'>批量上传图片：</view>
+         <view class='fl_r w70'>
+           <view bindtap="changesuoluotu" data-id='{{organization_id}}' style='padding-top:5px'  class='fl_l'><image src='../../images/add.png' style='width:30px;' mode='widthFix'></image>
+           </view>
+          </view>
+     </view>
+     <view class='clear'></view>
+     <view wx:for='{{xianshi}}' style='padding:20px 10px' class='fl_l sctp'><image src='{{item}}' style='width:50px; height:50px;'  mode='widthFix'></image><image src='../../images/dels.png' class='dels' bindtap='dels' data-tu='{{item}}'></image>
+    </view>
+
+      <view class='clear sts'>
+       <button form-type="submit" class='button1 bg_cs tc color_bai'>添加</button>
+      </view>
+    </form>
+    </view>
+
+    <view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+  </view>

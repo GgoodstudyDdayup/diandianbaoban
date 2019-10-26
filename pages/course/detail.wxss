@@ -1,0 +1,22 @@
+.topbanner image{ width: 100%; height: 200px;}
+.title{ padding: 10px 0;}
+.shit{padding: 20px 0; height: 30px; line-height: 30px;}
+
+.xqs{ padding: 15px;}
+.xqs .xqs_list{ margin-bottom: 4px; height: 35px; line-height: 35px; padding: 0 7px; color: #fff;} 
+.bg_slan{background-color: #80bbff;}
+.bg_lan{background-color: #4ca0ff;}
+
+.jigou{ padding-top:15px; height: 80px }
+.jigou .logo image{width: 60px; height: 60px;border-radius: 30px; }
+.jigou .names{ line-height: 30px}
+
+.address{ padding:10px 0; line-height: 25px; height: 25px;}
+.address image{ width: 25px; height: 25px;}
+
+.fotter{ padding-bottom: 60px; }
+.cont_title{ padding: 15px 0;}
+.cont_cont{ line-height: 30px; padding-top: 5px;}
+.dibu{ padding-top: 20px; height: 40px; line-height: 40px;position: fixed;
+bottom: 0; width: 100%;}
+.cs_button{ background-color: #0078ff; height: 40px; border: none;}

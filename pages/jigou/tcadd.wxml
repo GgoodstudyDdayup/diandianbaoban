@@ -1,0 +1,40 @@
+<!--pages/user/jgreg.wxml-->
+<view class='widt clear'>
+    <view class='tijiao'>
+    <form bindsubmit="formSubmit">
+       <view class='bbe list'>
+         <view class='fl_l w30'>老师姓名：</view>
+         <view class='fl_r w70'><input class="text_input" placeholder='请输入老师名称' name="names" /></view>
+         <view class='clear'></view>
+       </view>
+      <view class='bbe list clear'>
+         <view class='fl_l w30'>老师图片：</view>
+         <view class='fl_r w70'>
+           <view bindtap="changeAvatar" class='fl_l' style='padding-top:5px'><image src='../../images/add.png' style='width:30px;' mode='widthFix'></image></view>
+           <view wx:if='{{logo}}' style='padding-left:20px;' class='fl_l'><image src='{{logo}}' style='width:25px; height:25px;' mode='widthFix'></image></view>
+         </view>
+         <view class='clear'></view>
+       </view>
+       <view class='bbe list clear'>
+         <view class='fl_l w30'>所授课程：</view>
+         <view class='fl_r w70'><input class="text_input" name="teach" placeholder='请输入所授课程'  /></view>
+         <view class='clear'></view>
+       </view>
+     
+
+      <view class='list' style='padding-top:5px;'>
+         <view>老师简介：</view>
+        <view class='bbe bte bre ble' style='margin:10px 0;'>
+         <textarea placeholder="在文本框中输入内容" name='introduce' style='height:100px;'/>
+         </view>
+       </view>
+      <view class='clear sts'>
+       <button form-type="submit" class='button1 bg_cs tc color_bai'>发布</button>
+      </view>
+    </form>
+    </view>
+
+    <view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+  </view>

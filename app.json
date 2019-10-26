@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/course/index",
+    "pages/course/list",
+    "pages/course/detail",
+    "pages/course/ting",
+    "pages/course/ding",
+    "pages/organiza/index",
+    "pages/organiza/list",
+    "pages/organiza/detail",
+    "pages/organiza/xxq",
+    "pages/organiza/pingjia",
+    "pages/organiza/laoshi",
+    "pages/organiza/kec",
+    "pages/organiza/addpj",
+    "pages/user/index",
+    "pages/user/jgreg",
+    "pages/user/order",
+    "pages/jigou/index",
+    "pages/jigou/fabu",
+    "pages/jigou/kcedit",
+    "pages/jigou/kec",
+    "pages/jigou/znx",
+    "pages/jigou/znxdetail",
+    "pages/jigou/order",
+    "pages/jigou/tc",
+    "pages/jigou/tcadd",
+    "pages/jigou/tcedit",
+    "pages/jigou/xxgl",
+    "pages/jigou/xxqadd",
+    "pages/search/c_search",
+    "pages/search/o_search",
+    "pages/acticle/detail",
+    "pages/acticle/other",
+    "pages/user/info",
+    "pages/authorize/authorize"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "点点报班",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#0078ff",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icons/btn-tabs_01.png",
+        "selectedIconPath": "images/icons/btn-tabs_07.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/course/index",
+        "iconPath": "images/icons/btn-tabs_03.png",
+        "selectedIconPath": "images/icons/btn-tabs_08.png",
+        "text": "报班"
+      },
+      {
+        "pagePath": "pages/organiza/index",
+        "iconPath": "images/icons/btn-tabs_05.png",
+        "selectedIconPath": "images/icons/btn-tabs_09.png",
+        "text": "找机构"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "images/icons/btn-tabs_06.png",
+        "selectedIconPath": "images/icons/btn-tabs_10.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

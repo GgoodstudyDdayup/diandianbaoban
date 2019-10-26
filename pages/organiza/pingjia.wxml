@@ -1,0 +1,28 @@
+<view class="page">
+<view class='widt clear pingjia'>
+  <view class='clear  nc'>
+  <block wx:for="{{comment_list}}" wx:for-index="idx" wx:key="idx">
+    <view class='bbe'>
+    <view class='fl_l w25'><image src='{{item.headimgurl}}'></image></view>
+     <view class='fl_l w70'>
+       <view class='font_14'>{{item.nickname}}</view>
+       <view class='start'>
+        <block wx:for="{{item.one_1}}" wx:for-index="idx" wx:key="idx" > 
+        <image src='../../images/star.png'></image>  
+        </block>  
+        <block wx:for="{{item.two_1}}" wx:key="item">   
+          <image src='../../images/starg.png'></image> 
+        </block> 
+       </view>
+       <view class='color_danhui font_12'>{{item.content}}</view>
+     </view>
+     <view class='clear tr'>{{item.add_time}}</view>
+    </view>
+  </block>
+  </view>
+</view>
+
+<view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+</view>

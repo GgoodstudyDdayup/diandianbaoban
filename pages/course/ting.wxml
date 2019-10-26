@@ -1,0 +1,42 @@
+<view class="page">
+  <view class='bbe' style='padding-top:20px;height:10px;'>
+  </view>
+  <view class='bg_bs font_16 w30 tc sttitle'>申请试听</view>
+  <view class='widt clear'>
+    <view class='stimage'><image src='{{detail.banner}}'></image></view>
+    <view class='font_16 tc' style='padding-bottom:20px;'>{{detail.course_name}}</view>
+  </view>
+  <view class='height_10 bg_hs'></view>
+
+  <view class='widt clear'>
+    <view class='tijiao'>
+    <form bindsubmit="formSubmit">
+       <view class='bbe list'>
+         <view class='fl_l w30'>申请人：</view>
+         <view class='fl_r w70'><input class="text_input" name="names" placeholder="请输入申请人" /></view>
+       </view>
+       <view class='bbe list'>
+         <view class='fl_l w30'>联系电话：</view>
+          <view class='fl_l w40'><input class="text_input" name="tel" placeholder="请输入联系电话" value='{{tels}}'/></view>
+         <view class='fl_r w30'><button class='pop_btn font_12' plain="true"
+open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手机号</button></view>
+       </view>
+      <view class='list' style='padding-top:15px;'>
+         <view class='fl_l w30'>孩子年龄：</view>
+         <view class='fl_r w70'> 
+           <block wx:for="{{parameter}}" wx:key="parameter">
+    <view class='button tc fl_l {{item.checked?"bg_cs color_bai":" bg_hs"}}' data-id='{{item.id}}' bindtap='parameterTap' style='padding:0 8px; margin-right:15px;margin-bottom:15px;'>{{item.name}}</view>
+    </block>
+         </view>
+       </view>
+      <view class='clear sts'>
+       <button form-type="submit" class='button1 bg_cs tc color_bai'>申请试听</button>
+      </view>
+    </form>
+    </view>
+  </view>
+
+<view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+</view>

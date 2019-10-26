@@ -1,0 +1,9 @@
+.top{padding:20rpx 10rpx; }
+
+.pingjia{ padding-top: 10px;}
+.pingjia .nc{ padding: 15px 0;}
+.pingjia .nc .bbe{ padding: 10px 0;}
+.pingjia .nc .w25 image{ width: 90%; height:80px;  margin: 0 auto; border-radius: 50px;}
+
+.start image{ width: 20px; height: 20px;display: inline-block }
+.start { padding: 5px 0;}

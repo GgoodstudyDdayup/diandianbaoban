@@ -1,0 +1,4 @@
+.top{padding:20rpx 10rpx; }
+.znx .titles{ line-height: 30px; text-align: center; font-weight: bold; text-align:center;}
+.znx .nc{ line-height: 30px; }
+.contents{ padding: 20px 0;}

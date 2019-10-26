@@ -1,0 +1,22 @@
+<view class="page">
+
+<view class='widt clear baokuan'>
+  <view class='clear'>
+    <block wx:for="{{order_list}}" wx:for-index="idx" wx:key="idx">
+      <view class='item bbe'>
+       <view class='fl_l w35' style='margin-right:5%;'><image src='{{item.banner}}' ></image></view>
+       <view class='fl_l w60 font_14'>
+         <view class='clear'>{{item.course_name}}</view>
+         <view class='clear'>机构名称：{{item.organization_id}}</view>
+         <view class='clear '>电话：{{item.mobile}}</view>
+         <view class='clear '>价格：{{item.price}}</view>
+       </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+</view>

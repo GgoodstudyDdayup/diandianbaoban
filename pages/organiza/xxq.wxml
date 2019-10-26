@@ -1,0 +1,10 @@
+<view class="page">
+ <view class='widt'>
+   <block wx:for="{{xxq}}" wx:for-index="idx" wx:key="idx" >
+     <view class='xxq'><image src='{{item}}' mode="widthFix"> </image></view>
+  </block>
+</view>
+<view class='widt fotter tc color_hui'>
+   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+</view>
+</view>
