@@ -26,7 +26,7 @@ Page({
   formSubmit: function(e) {
     var that = this;
     wx.navigateTo({
-      url: '../search/c_search?str=' + String(e.detail.value.keyword)
+      url: '../search/o_search?str=' + String(e.detail.value.keyword)
     });
   },
   link: function(a) {
@@ -47,6 +47,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
+        console.log(res)
         var indexdata = res.data.data;
         indexdata.hot_course_list.forEach((item) => {
           item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
@@ -228,7 +229,7 @@ Page({
         });
         if (arrays.indexOf(province_id)) {
           wx.showToast({
-            title: '所选城市未开通！',
+            title: '城市暂未开放',
             duration: 2000
           });
           app.d.province_id = app.d.coustcity_id;

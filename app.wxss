@@ -54,7 +54,7 @@ icon {
 .ble{ border-left: 1px solid #f2f2f2}
 
 /*浮动*/
-.fl_l{ float: left;}
+.fl_l{ float: left;margin-bottom: 2px}
 .fl_r{ float: right;}
 
 .w10{ width: 10%;margin: 0 auto;}
@@ -89,5 +89,6 @@ icon {
   flex-direction: row;
   align-items: center;
   justify-content: center; 
+  margin-top: 30px
 }
 .fotter image{ margin-right: 3px; width:20px; height: 20px; }

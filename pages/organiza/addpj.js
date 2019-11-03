@@ -51,7 +51,7 @@ Page({
                duration: 10000
              })
              wx.navigateTo({
-               url: 'detail?id=' + that.data.organization_id
+               url: 'detail?id=' + that.data.organization_id+'&bottom=1'
              });
            }
         }

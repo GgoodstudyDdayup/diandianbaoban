@@ -1,0 +1,43 @@
+.tijiao {
+  padding: 10px 0;
+}
+
+.tijiao .list {
+  clear: both;
+  line-height: 45px;
+}
+
+.tijiao .list .text_input {
+  height: 45px;
+  line-height: 45px;
+}
+
+.checkbox .txt {
+  padding-left: 15px;
+}
+
+checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute
+}
+
+checkbox .wx-checkbox-input {
+  text-align: center;
+}
+
+.sts {
+  padding-top: 20px;
+}
+
+.sts .button1 {
+  line-height: 40px;
+  border: 0;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.pop_btn {
+  padding: 0 !important;
+  margin-top: 5px !important;
+}

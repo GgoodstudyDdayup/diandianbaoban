@@ -34,7 +34,8 @@
     "pages/acticle/detail",
     "pages/acticle/other",
     "pages/user/info",
-    "pages/authorize/authorize"
+    "pages/authorize/authorize",
+    "pages/jigou/jigouguanli"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -60,16 +61,16 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/course/index",
-        "iconPath": "images/icons/btn-tabs_03.png",
-        "selectedIconPath": "images/icons/btn-tabs_08.png",
-        "text": "报班"
-      },
-      {
         "pagePath": "pages/organiza/index",
         "iconPath": "images/icons/btn-tabs_05.png",
         "selectedIconPath": "images/icons/btn-tabs_09.png",
         "text": "找机构"
+      },
+      {
+        "pagePath": "pages/course/index",
+        "iconPath": "images/icons/btn-tabs_03.png",
+        "selectedIconPath": "images/icons/btn-tabs_08.png",
+        "text": "报班"
       },
       {
         "pagePath": "pages/user/index",

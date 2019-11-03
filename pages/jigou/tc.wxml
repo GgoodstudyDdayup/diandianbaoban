@@ -17,7 +17,7 @@
        <view class='font_14'>老师姓名：{{item.name}}</view>
        <view class='color_danhui'>主授课程：{{item.teach}}</view>
      </view>
-     <view class='fl_r w15 tr' style='padding-top:8px;'>
+     <view class='fl_r w15 tr' style='padding-top:8px;display:flex'>
         <view class=' fl_l' bindtap='shanchu' data-id='{{item.id}}' data-orid='{{organization_id}}' style=' margin:0 3px;' ><image src='../../images/del.png' style='width:20px; height:20px;'></image></view>
         <view class='fl_r' data-link='tcedit?id={{item.id}}&&organization_id={{organization_id}}' bindtap='link'><image src='../../images/edit.png' style='width:20px; height:20px;'></image></view>
      </view>

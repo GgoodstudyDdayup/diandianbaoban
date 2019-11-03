@@ -97,7 +97,7 @@
 
 <view class='widt clear fujin'>
   <view class='font_18 fl_l'>附近课程</view>
-  <view class='fl_r color_hui' bindtap='link' data-link='../course/list'>更多</view>
+  <view class='fl_r color_hui' bindtap='link' data-link='../course/list?sort=3'>更多</view>
   <view class='clear'>
     <block wx:for="{{near_course_list}}" wx:for-index="idx" wx:key="idx">
       <navigator url='../course/detail?id={{item.id}}' class='item bbe' hover-class="none">
@@ -128,7 +128,7 @@
          <view class='clear color_hui'><view class='fl_l'>{{item.address}}</view><view class='fl_r'>{{item.juli}}</view></view>
          <view class='clear gou'>
           <block wx:for="{{item.shuoming}}" wx:for-item="bb" >
-           <view class='fl_l' style='margin-rgint:5px'><view class='font_14 bg_bts  button' style='margin-right:5px; padding:0 5px;'>{{bb}}</view></view>
+           <view class='fl_l' style='margin-rgint:5px;display:flex'><view class='font_14 bg_bts  button' style='margin-right:5px;padding: 0 5px;width: 70pt;height: 30px;line-height:30px;text-align: center;'>{{bb}}</view></view>
            
            </block>
          </view>

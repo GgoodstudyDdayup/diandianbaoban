@@ -35,7 +35,7 @@ open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手�
          </view>
        </view>
       <view class='clear sts'>
-       <button bindtap='Submit1' class='button1 bg_hs tc color_hei'>立即订购</button>
+       <button formType="submit" class='button1 bg_hs tc color_hei'>立即订购</button>
       </view>
     </form>
     </view>

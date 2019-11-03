@@ -33,8 +33,28 @@ Page({
       phoneNumber: t
     })
   },
+  address: function() {
+    let that = this
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success(res) {
+        const x = that.data.location_x
+        const y = that.data.location_y
+        wx.openLocation({
+          latitude: Number(y),
+          longitude: Number(x),
+          scale: 18
+        })
+      }
+    })
+  },
   onLoad: function(options) {
     var that = this;
+    if (options.bottom) {
+      setTimeout(() => {
+        that.pageScrollToBottom()
+      }, 500)
+    }
     wx.showLoading({
       title: '玩命加载中',
     })
@@ -48,6 +68,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
+        console.log(res)
         var a = res.data.data.organization_model.show_imges.split(",");
         var b = res.data.data.organization_model.category_str.split(",");
         var newsArr = res.data.data.comment_list;
@@ -61,12 +82,22 @@ Page({
           xxq: a,
           aab: b,
           comment: newsArr,
-          teacher_list: res.data.data.teacher_list
+          teacher_list: res.data.data.teacher_list,
+          location_x: res.data.data.organization_model.location_x,
+          location_y: res.data.data.organization_model.location_y
         })
       }
     })
     wx.hideLoading();
-  }
+  },
+  pageScrollToBottom: function() {
+    wx.createSelectorQuery().select('#j_page').boundingClientRect(function(rect) {
+      // 使页面滚动到底部
+      wx.pageScrollTo({
+        scrollTop: rect.bottom
+      })
+    }).exec()
+  },
 
 
 })

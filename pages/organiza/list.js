@@ -56,7 +56,8 @@ Page({
     }
     if (ageid) {
       that.setData({
-        age_id: ageid
+        age_id: ageid,
+        cssLIght: ageid
       })
     }
     if (district) {
@@ -179,7 +180,9 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-
+        console.log(res)
+        console.log(app.globalData.location.latitude)
+        console.log(app.globalData.location.longitude)
         if (res.data.data.total_count > 0 ) { 
           var listdata = res.data.data.organization_list;
           var newsArr = [];

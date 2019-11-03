@@ -3,15 +3,15 @@ App({
   d: {
     hostUrl: 'https://devapi.yidianedu.com',
     province_id: 320500, //默认开通城市
-    userID:0,
-    current_address:'',
-    cityname:'苏州市'
+    userID: 0,
+    current_address: '',
+    cityname: '苏州市'
   },
-  wxlogin:function (){
+  wxlogin: function() {
     var that = this;
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       wx.login({
-        success: function (res) {
+        success: function(res) {
           console.log(res)
           var code = res.code;
           console.log(code);
@@ -24,11 +24,11 @@ App({
             header: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
-            success: function (ress) {
+            success: function(ress) {
               var data = ress.data;
               console.log(ress);
-              console.log(that.d.userID)
-              if(data.code==1){
+              if (data.code == 1) {
+
                 that.globalData.sessionId = data.data.session_key;
                 that.globalData.openid = data.data.openid;
                 console.log(that.globalData.openid);
@@ -36,17 +36,17 @@ App({
                 resolve(ress.data);
               }
             }
-         })
+          })
         }
       })
     })
   },
-  wxaddress:function(){
+  wxaddress: function() {
     var that = this;
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       wx.getLocation({
         altitude: false,
-        success: function (res) {
+        success: function(res) {
           var latitude = res.latitude;
           var longitude = res.longitude;
           that.globalData.location = {
@@ -70,7 +70,7 @@ App({
       });
     })
   },
-  onLaunch: function () {
+  onLaunch: function() {
     var that = this
     // 展示本地存储能力1
     var logs = wx.getStorageSync('logs') || []
@@ -78,7 +78,7 @@ App({
     wx.setStorageSync('logs', logs);
     wx.getLocation({
       altitude: false,
-      success: function (res) {
+      success: function(res) {
         var latitude = res.latitude;
         var longitude = res.longitude;
         that.globalData.location = {
@@ -88,29 +88,30 @@ App({
       }
     })
   },
-  getDistance: function (lat1, lng1, lat2, lng2) {
-    lat1 = lat1 || 0;
-    lng1 = lng1 || 0;
-    lat2 = lat2 || 0;
-    lng2 = lng2 || 0;
+  getDistance: function(lat1, lng1, lat2, lng2) {
+    lat1 = Number(lat1) || 0;
+    lng1 = Number(lng1) || 0;
+    lat2 = Number(lat2) || 0;
+    lng2 = Number(lng2) || 0;
+    console.log(lat1, lat2, lng1, lng2)
     var rad1 = lat1 * Math.PI / 180.0;
     var rad2 = lat2 * Math.PI / 180.0;
     var a = rad1 - rad2;
     var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
-    var r = 6378137;  //地球半径
-    var distance = r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)));
-    if (distance > 1000){
-      distance = Math.round(distance / 1000000)+"km";
-    }else{
-      distance = Math.round(distance)+"m";
+    var distance = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)));
+    distance = distance * 6378.137; //地球半径
+    console.log(distance)
+    if (distance > 1) {
+      distance = Math.floor(Math.round(distance * 10000) / 10000) + 'km'
+    } else {
+      distance = Math.floor(Math.round(distance * 10000) / 10) + 'm'
     }
-
     return distance;
   },
   globalData: {
     userInfo: null,
-    location:[],
-    openid:'',
-    sessionId:''
+    location: [],
+    openid: '',
+    sessionId: ''
   }
 })

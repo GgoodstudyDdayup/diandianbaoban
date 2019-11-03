@@ -1,73 +1,91 @@
 <view class="page">
-   <view class='top widt'>
-   <form bindsubmit="formSubmit">
-    <view class='search'>
-      <view class='fl_l w85'><input class="text_input" placeholder="请输入课程名称"  name="keyword" value='{{str}}' /></view>
-      <view class='fl_r w15' ><button form-type="submit" class='submits'><image src='../../images/search.png'></image></button></view>
-      
+  <view class='top widt'>
+    <form bindsubmit="formSubmit">
+      <view class='search'>
+        <view class='fl_l w85'>
+          <input class="text_input" placeholder="请输入课程名称" name="keyword" value='{{str}}' />
+        </view>
+        <view class='fl_r w15'>
+          <button form-type="submit" class='submits'>
+            <image src='../../images/search.png'></image>
+          </button>
+        </view>
+      </view>
+    </form>
+  </view>
+
+  <view class="mask" wx:if="{{hsshow}}" bindtap='bb'>
+  </view>
+  <view class="swiper-tab ">
+    <view class='widt'>
+      <view class="swiper-tab-list font_14" data-current="4" bindtap="clickPerson">{{qyname}}
+        <image src='../../images/icon.png'></image>
+      </view>
+      <view class="swiper-tab-list2 font_14" data-current="1" bindtap="clickPerson">{{flname}}
+        <image src='../../images/icon.png'></image>
+      </view>
+      <view class="swiper-tab-list3 font_14 " data-current="2" bindtap="clickPerson">{{kcname}}
+        <image src='../../images/icon.png'></image>
+      </view>
+      <view class="swiper-tab-list font_14 " data-current="3" bindtap="clickPerson">{{xlname}}
+        <image src='../../images/icon.png'></image>
+      </view>
+      <view class='bg_bs xiala' wx:if="{{qyMask}}">
+        <view class='w85 bbe' wx:for="{{district_list}}" wx:for-index="idx" wx:key="idx" bindtap='link' data-district='{{item.district_id}}' data-qyname="{{item.district}}">{{item.district}}</view>
+      </view>
+      <view class='bg_bs xiala' wx:if="{{flMask}}">
+        <view class=''>
+          <view class='fl_l w40 bg_hs tc'>
+            <view class="{{item.id == itemId   ? 'bor-left':''}}" wx:for="{{category_list}}" wx:for-index="idx" wx:key="idx" bindtap='erjifenlie' data-id='{{item.id}}'>{{item.name}}</view>
+          </view>
+          <view class='fl_l w60 tc'>
+            <view wx:for="{{category_list2}}" wx:for-index="idx" wx:key="idx" bindtap='link' data-category='{{item.parent_id}}' data-category2='{{item.id}}' data-flname="{{item.name}}">{{item.name}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='bg_bs xiala' wx:if="{{lxMask}}">
+        <view class='w85 bbe' bindtap='link' data-hot='1' data-kcname='爆款课程'>爆款课程</view>
+        <view class='w85 bbe' bindtap='link' data-hot='2' data-kcname='普通课程'>普通课程</view>
+      </view>
+      <view class='bg_bs xiala' wx:if="{{xlMask}}">
+        <view class='w85 bbe' bindtap='link' data-sort='1' data-xlname='高到低'>销量从高到低</view>
+        <view class='w85 bbe' bindtap='link' data-sort='2' data-xlname='低到高'>销量从低到高</view>
+      </view>
     </view>
-   </form>
-   </view>
+  </view>
 
-<view class="mask" wx:if="{{hsshow}}" catchtouchmove="true" bindtap='bb'>
-</view>
-<view class="swiper-tab ">
- <view class='widt'>
- <view class="swiper-tab-list font_14" data-current="4" bindtap="clickPerson" >{{qyname}}<image src='../../images/icon.png'></image></view>
-  <view class="swiper-tab-list2 font_14" data-current="1" bindtap="clickPerson" >{{flname}}<image src='../../images/icon.png'></image></view>
-  <view class="swiper-tab-list3 font_14 " data-current="2" bindtap="clickPerson" >{{kcname}}<image src='../../images/icon.png'></image></view>
-  <view class="swiper-tab-list font_14 " data-current="3"  bindtap="clickPerson">{{xlname}}<image src='../../images/icon.png'></image></view>
- <view class='bg_bs xiala' wx:if="{{qyMask}}" catchtouchmove="true">
-       <view class='w85 bbe' wx:for="{{district_list}}" wx:for-index="idx" wx:key="idx" bindtap='link' data-district='{{item.district_id}}' data-qyname="{{item.district}}">{{item.district}}</view>
+  <view class='widt ages clear bte'>
+    <view class="button bg_bts tc font_12 fl_l item {{cssLIght == 0 ? 'age_css' : ''}}" bindtap='link' data-ageid='0'>全部</view>
+    <view class="button bg_bts tc font_12 fl_l item {{cssLIght == 1 ? 'age_css' : ''}}" bindtap='link' data-ageid='1'>0-3岁</view>
+    <view class="button bg_bts tc font_12 fl_l item {{cssLIght == 2 ? 'age_css' : ''}}" bindtap='link' data-ageid='2'>3-6岁</view>
+    <view class="button bg_bts tc font_12 fl_l item {{cssLIght == 3 ? 'age_css' : ''}}" bindtap='link' data-ageid='3'>6-12岁</view>
+    <view class="button bg_bts tc font_12 fl_l item {{cssLIght == 4 ? 'age_css' : ''}}" bindtap='link' data-ageid='4'>12-15岁</view>
+    <view class="button bg_bts tc font_12 fl_l item {{cssLIght == 5 ? 'age_css' : ''}}" bindtap='link' data-ageid='5'>15-18岁</view>
   </view>
-   <view class='bg_bs xiala' wx:if="{{flMask}}" catchtouchmove="true">
-      <view class=''>
-      <view class='fl_l w40 bg_hs tc'>
-      <view  wx:for="{{category_list}}" wx:for-index="idx" wx:key="idx" bindtap='erjifenlie' data-id='{{item.id}}'>{{item.name}}</view>
-      </view>
-      <view class='fl_l w60 tc'>
-       <view  wx:for="{{category_list2}}" wx:for-index="idx" wx:key="idx" bindtap='link' data-category='{{item.parent_id}}' data-category2='{{item.id}}' data-flname="{{item.name}}">{{item.name}}</view>
-      </view>
-     </view>
+  <view class='widt clear baokuan'>
+    <view class='clear'>
+      <block wx:for="{{course_list}}" wx:for-index="idx" wx:key="idx">
+        <navigator url='detail?id={{item.id}}' class='item bbe'>
+          <view class='fl_l w35' style='margin-right:5%;'>
+            <image src='{{item.banner}}'></image>
+          </view>
+          <view class='fl_l w60'>
+            <view class='font_16' style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">{{item.course_name}}</view>
+            <view class='clear color_hui'>
+              <view class='fl_l'>{{item.organization_name}}</view>
+              <view class='fl_r'>{{item.juli}}</view>
+            </view>
+            <view class='clear gou'>
+              <view class='fl_l font_18 color_hong'>￥{{item.price}}</view>
+              <view class='fl_r color_hui'>已购：{{item.buy_count}}</view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+    </view>
   </view>
-  <view class='bg_bs xiala' wx:if="{{lxMask}}" catchtouchmove="true">
-     <view class='w85 bbe' bindtap='link' data-hot='1' data-kcname='爆款课程'>爆款课程</view>
-     <view class='w85 bbe' bindtap='link' data-hot='2' data-kcname='普通课程'>普通课程</view>
-  </view>
-  <view class='bg_bs xiala' wx:if="{{xlMask}}" catchtouchmove="true">
-     <view class='w85 bbe' bindtap='link' data-sort='1' data-xlname='从高到低'>销量从高到低</view>
-     <view class='w85 bbe' bindtap='link' data-sort='2' data-xlname='从低到高'>销量从低到高</view>
-  </view>
- </view>
-</view>
 
-<view class='widt ages clear bte'>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-ageid='0'>全部</view>
-  <view class='button bg_bts tc font_12 fl_l item'bindtap='link' data-ageid='1'>0-3岁</view>
-  <view class='button bg_bts tc font_12 fl_l item'bindtap='link' data-ageid='2'>3-6岁</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-ageid='3'>6-12岁</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-ageid='4'>12-15岁</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-ageid='5'>15-18岁</view>
-</view>
-<view class='widt clear baokuan'>
-  <view class='clear'>
-    <block wx:for="{{course_list}}" wx:for-index="idx" wx:key="idx">
-      <navigator url='detail?id={{item.id}}' class='item bbe'>
-       <view class='fl_l w35' style='margin-right:5%;'><image src='{{item.banner}}' ></image></view>
-       <view class='fl_l w60'>
-         <view class='font_16'>{{item.course_name}}</view>
-         <view class='clear color_hui'><view class='fl_l'>{{item.organization_name}}</view><view class='fl_r'>{{item.juli}}</view></view>
-         <view class='clear gou'>
-           <view class='fl_l font_18 color_hong'>￥{{item.price}}</view>
-           <view class='fl_r color_hui'>已购：{{item.buy_count}}</view>
-         </view>
-       </view>
-      </navigator>
-    </block>
+  <view class='widt fotter tc color_hui'>
+    <image src='../../images/tel.png'></image>客服热线：0512-87313378
   </view>
-</view>
-
-<view class='widt fotter tc color_hui'>
-   <image src='../../images/tel.png'></image>客服热线：0512-87313378
-</view>
 </view>

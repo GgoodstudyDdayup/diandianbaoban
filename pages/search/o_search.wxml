@@ -8,9 +8,9 @@
     </view>
    </form>
    </view>
-<view class='widt clear s_nav bg_hs font_14'>
-   <view class='w50 fl_l tc ' bindtap='link' data-link='c_search?str={{str}}'>课程</view>
+<view class='widt clear s_nav bg_hs font_14' style="display: flex;justify-content: end">
    <view class='w50 fl_r tc bg_bts' >机构</view>
+   <view class='w50 fl_l tc '  bindtap='link' data-link='c_search?str={{str}}'>课程</view>
 </view>
 <view class='widt clear baokuan'>
   <view class='clear'>

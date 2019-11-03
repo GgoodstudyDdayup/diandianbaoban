@@ -9,7 +9,7 @@
 
     <view class="w90">
       <view class='nav'>
-        <navigator class="item bbe" url="order?type=2" hover-class="none">
+        <!-- <navigator class="item bbe" url="order?type=2" hover-class="none">
            <view class='fl_l w10'>
                 <image src="../../images/or1.jpg"></image>
            </view>
@@ -17,7 +17,7 @@
             <view class='fl_r'>
             <image src="../../images/arrowright.png"></image>
             </view>
-        </navigator>
+        </navigator> -->
         <navigator class="item bbe" url="order?type=1" hover-class="none">
            <view class='fl_l w10'>
                 <image src="../../images/or2.jpg"></image>

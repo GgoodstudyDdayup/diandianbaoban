@@ -14,6 +14,35 @@ Page({
       url: t
      });
   },
+  del(e) {
+    let that = this
+    let f1_img = that.data.f1_img
+    wx.showModal({
+      title: '提示',
+      content: '你确定要删除这张照片吗？',
+      success(res) {
+        if (res.confirm) {
+          if (e.currentTarget.dataset.logo == 'banner') {
+            that.setData({
+              suoluotu: ''
+            })
+          } else if (e.currentTarget.dataset.logo == 'logo') {
+            that.setData({
+              logo: ''
+            })
+          } else {
+            that.setData({
+              show_imges: ''
+            })
+          }
+
+        } else if (res.cancel) {
+          return false
+        }
+      }
+    })
+    console.log(e)
+  },
   shanchu: function (e) {
     var that = this;
     wx.showModal({
@@ -39,9 +68,11 @@ Page({
                   icon: 'success',
                   duration: 2000
                 })
-                wx.navigateTo({
-                  url: 'index?id=' + e.currentTarget.dataset.orid
-                });
+                setTimeout(()=>{
+                  wx.navigateBack({
+                    delta: 1
+                  });
+                },1000)
               }
             }
           })

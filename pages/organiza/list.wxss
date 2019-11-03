@@ -1,18 +1,88 @@
-.top{padding:20rpx 10rpx; }
+.top {
+  padding: 20rpx 10rpx;
+}
 
-.swiper-tab{ padding: 10px 0; height:30px }
-.swiper-tab .swiper-tab-list{ float: left; height: 25px; width: 33.3%;display: flex;flex-direction: row;align-items: center;justify-content: center; }
-.swiper-tab .swiper-tab-list image{ width: 15px; height: 15px;}
-.swiper-tab  .on{ color:#ff8c65;}
- .mask{  width: 100%; height:100%;position: fixed;bottom: 0rpx;z-index: 998;  background: #000; top:110px;  opacity: 0.5;  }
-.xiala{ line-height: 35px; width: 100%; position: fixed;top:110px;left: 0; z-index: 1000}
+.swiper-tab {
+  padding: 10px 0;
+  height: 30px;
+}
 
-.ages { height: 35px; padding-top: 10px}
-.ages .item{ width: 15%;margin-right: 2%;}
-.ages .item:last-child{margin-right:0%;}
+.swiper-tab .swiper-tab-list {
+  float: left;
+  height: 25px;
+  width: 33.3%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
-.baokuan{padding: 10px 0;}
-.baokuan .item{ clear: both; display: block; height: 140px; padding-top: 15px; line-height: 35px;}
-.baokuan .item image{width: 100%; height: 120px;border-radius: 5px;}
-.baokuan .gou{ padding-top: 15px;}
+.swiper-tab .swiper-tab-list image {
+  width: 15px;
+  height: 15px;
+}
 
+.swiper-tab  .on {
+  color: #ff8c65;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 0rpx;
+  z-index: 998;
+  background: #000;
+  top: 110px;
+  opacity: 0.5;
+}
+
+.xiala {
+  line-height: 35px;
+  width: 100%;
+  position: fixed;
+  top: 110px;
+  left: 0;
+  z-index: 1000;
+}
+
+.ages {
+  height: 35px;
+  padding-top: 10px;
+}
+
+.ages .item {
+  width: 15%;
+  margin-right: 2%;
+}
+
+.ages .item:last-child {
+  margin-right: 0%;
+}
+
+.baokuan {
+  padding: 10px 0;
+}
+
+.baokuan .item {
+  clear: both;
+  display: block;
+  height: 140px;
+  padding-top: 15px;
+  line-height: 35px;
+}
+
+.baokuan .item image {
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+}
+
+.baokuan .gou {
+  padding-top: 15px;
+}
+
+.age_css {
+  background: #4d94ff;
+  color: #fff;
+}

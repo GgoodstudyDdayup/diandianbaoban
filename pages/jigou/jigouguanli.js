@@ -1,26 +1,30 @@
+// pages/jigou/jigouguanli.js
 const app = getApp();
 Page({
   data: {
     category_list: [],
+    f1_img: {
+      logo: '',
+      banner: '',
+      show_imges: ''
+    },
     logo: '',
     banner: '',
     show_imges: '',
     jigou: '',
     xieyi: 1,
     tels: '',
-    current_address: '',
-    f1_img: {
-      logo: '',
-      banner: '',
-      show_imges: ''
-    }
+    current_address: ''
   },
   maps: function() {
     var that = this;
     wx.chooseLocation({
       success: function(res) {
+        console.log(res)
         that.setData({
-          current_address: res.address
+          current_address: res.address,
+          location_x: res.longitude,
+          location_y: res.latitude
         })
       }
     });
@@ -47,8 +51,9 @@ Page({
   checkboxChange(e) {
     var that = this;
     that.setData({
-      jigou: e.detail.value,
+      jigou: e.detail.value
     })
+    console.log(that.data.jigou);
   },
   getPhoneNumber(e) {
     var that = this;
@@ -71,6 +76,7 @@ Page({
     })
   },
   formSubmit: function(e) {
+    console.log(e)
     var that = this;
     var flag = true;
     var sqr = e.detail.value.names;
@@ -78,42 +84,40 @@ Page({
     var linkname = e.detail.value.linkname;
     var introduce = e.detail.value.introduce;
     var tel = e.detail.value.tel;
-    if (sqr == '' || tel == '' || add == '' || that.data.logo == '' || linkname == '' || that.data.xieyi == 0 || that.data.jigou == '' || introduce == '') {
-      if (that.data.xieyi == 0) {
-        wx.showModal({
-          title: '提示',
-          content: '请点击同意阅读并同意入住协议'
-        })
-      } else {
-        wx.showModal({
-          title: '提示',
-          content: '请填写完整数据之后在提交'
-        })
-      }
+    let location_x = that.data.location_x || that.data.category_list.location_x
+    let location_y = that.data.location_y || that.data.category_list.location_y
+    let address = that.data.current_address || that.data.category_list.address
+    let logo = that.data.logo || ''
+    let banner = that.data.banner || ''
+    let show_img = that.data.show_imges || ''
+    console.log(logo, banner, show_img)
+    if (sqr == '' || tel == '' || add == '' || linkname == '' || introduce == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请填写完整数据之后在提交'
+      })
     } else {
       wx.request({
-        url: app.d.hostUrl + '/api/miniprogram/join',
-        method: 'post',
+        url: app.d.hostUrl + '/api/miniprogram/edit_organization',
+        method: 'POST',
         data: {
-          user_id: app.d.userID,
+          organization_id: app.globalData.organization_id,
           name: sqr,
-          logo: that.data.logo,
-          banner: that.data.banner,
-          tel: tel,
-          city_id: app.d.province_id,
-          X: app.globalData.location.longitude,
-          Y: app.globalData.location.latitude,
-          CITYID: app.d.province_id,
+          tel,
           linkman: linkname,
-          address: add,
-          category_str: that.data.jigou,
-          introduce: introduce,
-          show_img: that.data.show_imges
+          location_x,
+          location_y,
+          address,
+          introduce,
+          logo,
+          show_img,
+          banner
         },
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
+          console.log(res)
           console.log(that.data.logo);
           console.log(res.data.msg);
           console.log(that.data.jigou);
@@ -122,11 +126,11 @@ Page({
               title: `${res.data.msg}`,
             })
             setTimeout(() => {
-              wx.switchTab({
-                url: 'index'
+              wx.navigateBack({
+                delta: 1
               })
-            },500)
-          }else{
+            }, 1000)
+          } else if (res.data.code == -1) {
             wx.showToast({
               title: `${res.data.msg}`,
             })
@@ -139,45 +143,51 @@ Page({
     var that = this;
     //判断是否审核
     wx.request({
-      url: app.d.hostUrl + '/api/miniprogram/get_userinfo',
+      url: app.d.hostUrl + '/api/miniprogram/get_organization_detail',
       method: 'post',
       data: {
-        openid: app.globalData.openid
+        id: app.globalData.organization_id
       },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        if (res.data.data.users_model.organization_state == 1 || res.data.data.users_model.organization_state == 2) {
-          wx.showModal({
-            title: '提示',
-            content: '机构审核中，请耐心等待！'
-          })
-          wx.switchTab({
-            url: 'index',
-            success: function(e) {
-              var page = getCurrentPages().pop();
-              if (page == undefined || page == null) return;
-              page.onLoad();
-            }
-          })
-        }
-      },
-    })
-    wx.request({
-      url: app.d.hostUrl + '/api/miniprogram/get_category_list',
-      method: 'post',
-      data: {},
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function(res) {
+        console.log(res)
         that.setData({
-          category_list: res.data.data.category_list
+          category_list: res.data.data.organization_model
         })
       }
     })
     wx.hideLoading();
+  },
+  del(e) {
+    let that = this
+    let category_list = that.data.category_list
+    let f1_img = that.data.f1_img
+    wx.showModal({
+      title: '提示',
+      content: '你确定要删除这张照片吗？',
+      success(res) {
+        if (res.confirm) {
+          if (f1_img[`${e.currentTarget.dataset.logo}`] == '') {
+            console.log(111)
+            category_list[`${e.currentTarget.dataset.logo}`] = ''
+            that.setData({
+              category_list
+            })
+          } else {
+            f1_img[`${e.currentTarget.dataset.logo}`] = ''
+            that.setData({
+              f1_img
+            })
+          }
+
+        } else if (res.cancel) {
+          return false
+        }
+      }
+    })
+    console.log(e)
   },
   changeAvatar1: function(e) {
     var that = this
@@ -186,6 +196,7 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
+        console.log(res)
         wx.showToast({
           title: '正在上传...',
           icon: 'loading',
@@ -194,6 +205,11 @@ Page({
         })
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
+        let f1_img = that.data.f1_img
+        f1_img.banner = res.tempFilePaths[0]
+        that.setData({
+          f1_img
+        })
         //这里是上传操作
         wx.uploadFile({
           url: app.d.hostUrl + '/api/upload/upload_single_img',
@@ -210,8 +226,10 @@ Page({
             console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
+              let banner = that.data.banner
+              f1_img.banner = app.d.hostUrl + '/' + pic.single_file_path
               that.setData({
-                banner: app.d.hostUrl + '/' + pic.single_file_path
+                banner
               })
               wx.hideToast();
             }
@@ -237,14 +255,13 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        wx.showToast({
-          title: '正在上传...',
-          icon: 'loading',
-          mask: true,
-          duration: 10000
-        })
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
+        let f1_img = that.data.f1_img
+        f1_img.logo = res.tempFilePaths[0]
+        that.setData({
+          f1_img
+        })
         //这里是上传操作
         wx.uploadFile({
           url: app.d.hostUrl + '/api/upload/upload_single_img',
@@ -261,13 +278,15 @@ Page({
             console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
+              let logo = that.data.logo
+              logo = app.d.hostUrl + '/' + pic.single_file_path
               that.setData({
-                logo: app.d.hostUrl + '/' + pic.single_file_path
+                logo
               })
+
               wx.hideToast();
             }
           }
-
         })
       },
       fail: function(res) {
@@ -288,14 +307,13 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        wx.showToast({
-          title: '正在上传...',
-          icon: 'loading',
-          mask: true,
-          duration: 10000
-        })
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
+        let f1_img = that.data.f1_img
+        f1_img.show_imges = res.tempFilePaths[0]
+        that.setData({
+          f1_img
+        })
         //这里是上传操作
         wx.uploadFile({
           url: app.d.hostUrl + '/api/upload/upload_single_img',
@@ -312,13 +330,14 @@ Page({
             console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
+              let show_imges = that.data.show_imges
+              show_imges = app.d.hostUrl + '/' + pic.single_file_path
               that.setData({
-                show_imges: app.d.hostUrl + '/' + pic.single_file_path
+                show_imges
               })
               wx.hideToast();
             }
           }
-
         })
       },
       fail: function(res) {
@@ -331,36 +350,5 @@ Page({
         })
       }
     })
-  },
-  del(e) {
-    let that = this
-    let f1_img = that.data.f1_img
-    wx.showModal({
-      title: '提示',
-      content: '你确定要删除这张照片吗？',
-      success(res) {
-        if (res.confirm) {
-          if (e.currentTarget.dataset.logo == 'banner') {
-            that.setData({
-              banner: ''
-            })
-          } else if (e.currentTarget.dataset.logo == 'logo') {
-            that.setData({
-              logo: ''
-            })
-          } else {
-            that.setData({
-              show_imges: ''
-            })
-          }
-
-        } else if (res.cancel) {
-          return false
-        }
-      }
-    })
-    console.log(e)
-  },
-
-
+  }
 })

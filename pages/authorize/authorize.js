@@ -102,6 +102,8 @@ Page({
           wx.switchTab({
             url: '/pages/user/index'
           })
+          wx.setStorageSync('userID', res.data.data.users_model.id)
+          console.log(wx.getStorageSync('userID'))
           console.log(app.d.userID);
         }
       },

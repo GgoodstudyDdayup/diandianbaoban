@@ -7,7 +7,7 @@
        <view class='fl_l w35' style='margin-right:5%;'><image src='{{item.banner}}' ></image></view>
        <view class='fl_l w60 font_14'>
          <view class='clear'>{{item.course_name}}</view>
-         <view class='clear'>机构名称：{{item.organization_id}}</view>
+         <view class='clear'>机构名称：{{item.course_name}}</view>
          <view class='clear '>电话：{{item.mobile}}</view>
          <view class='clear '>价格：{{item.price}}</view>
        </view>

@@ -32,12 +32,12 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
+        console.log(res)
         var indexdata = res.data.data;
         indexdata.near_organization_list.forEach((item) => {
           item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
           item.shuoming = item.category_str.split(",");
         })
-
         console.log(app.globalData.location.latitude);
         that.setData({
           nav: indexdata.category_list,

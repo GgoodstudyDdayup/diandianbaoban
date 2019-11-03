@@ -11,32 +11,33 @@ Page({
     xlname: '销量',
     qyname: '附近',
     page: 1,
-    total_count:1,
-    page_size:5,
-    category_list:[],//分类数据
-    category_list2: [],//二级分类数据
-    district_list:[],//区域数据
+    total_count: 1,
+    page_size: 5,
+    category_list: [], //分类数据
+    category_list2: [], //二级分类数据
+    district_list: [], //区域数据
     course_list: [], //数据
-    top_category:0,
-    second_category:0,
+    top_category: 0,
+    second_category: 0,
     is_hot: 0,
     age_id: 0,
-    district_id:0,
+    district_id: 0,
     str: '',
-    sort: 1
+    sort: 0,//默认不传
+    itemId: 1
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     let users = wx.getStorageSync('user');
-    if (res.from === 'button') { }
+    if (res.from === 'button') {}
     return {
       title: '转发',
       path: 'pages/course/list',
-      success: function (res) {
+      success: function(res) {
 
       }
     }
   },
-  link: function (a) {
+  link: function(a) {
     var district = a.currentTarget.dataset.district;
     var qyname = a.currentTarget.dataset.qyname;
     var second_category = a.currentTarget.dataset.category2;
@@ -48,7 +49,6 @@ Page({
     var xlname = a.currentTarget.dataset.xlname;
     var ageid = a.currentTarget.dataset.ageid;
     var that = this;
-
     if (second_category) {
       that.setData({
         second_category: second_category,
@@ -85,7 +85,8 @@ Page({
     }
     if (ageid) {
       that.setData({
-        age_id: ageid
+        age_id: ageid,
+        cssLIght: ageid
       })
     }
     if (district) {
@@ -99,11 +100,11 @@ Page({
         qyMask: false
       })
     }
-    console.log(that.data.top_category);
-    console.log(that.data.second_category);
+    console.log(ageid);
+    console.log(ageid);
     that.getdata();
   },
-  bb:function(){
+  bb: function() {
     this.setData({
       flMask: false,
       lxMask: false,
@@ -112,13 +113,14 @@ Page({
       qyMask: false
     })
   },
-  clickPerson: function (a) {
+  clickPerson: function(a) {
+    console.log(a)
     var flMask = this.data.flMask;
     var lxMask = this.data.lxMask;
     var xlMask = this.data.xlMask;
     var qyMask = this.data.qyMask;
     var t = a.currentTarget.dataset.current;
-    if(t==1){
+    if (t == 1) {
       if (flMask == true) {
         this.setData({
           flMask: false,
@@ -139,7 +141,7 @@ Page({
         })
       }
     }
-    if(t == 2){
+    if (t == 2) {
       if (lxMask == true) {
         this.setData({
           flMask: false,
@@ -158,8 +160,8 @@ Page({
           hsshow: true
         })
       }
-    } 
-    if (t == 3){
+    }
+    if (t == 3) {
       if (xlMask == true) {
         this.setData({
           flMask: false,
@@ -200,22 +202,22 @@ Page({
       }
     }
   },
-  formSubmit:function(e){
-   var that = this;
+  formSubmit: function(e) {
+    var that = this;
     this.setData({
       str: String(e.detail.value.keyword),
-      course_list:[],
+      course_list: [],
       top_category: 0,
-      second_category:0,
+      second_category: 0,
       is_hot: 0,
       age_id: 0,
-      district_id:0,
+      district_id: 0,
       sort: 1
     })
     console.log(that.data.str);
     this.getdata();
   },
-  getdata:function(){
+  getdata: function() {
     var that = this;
     wx.showLoading({
       title: '玩命加载中',
@@ -237,28 +239,29 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
-
-        if (res.data.data.total_count > 0 ) { 
-            var listdata = res.data.data.course_list;
-          
-            var newsArr=[];
-            if(that.data.page==1){
-              newsArr =[];
-            }else{
-              newsArr = that.data.course_list;
-            }
-            console.log(newsArr);
-            for (var i = 0; i < listdata.length; i++) {
-              newsArr.push(listdata[i])
-            }
+      success: function(res) {
+        console.log(res)
+        console.log(app.globalData.location.latitude)
+        console.log(app.globalData.location.longitude)
+        if (res.data.data.total_count > 0) {
+          var listdata = res.data.data.course_list;
+          var newsArr = [];
+          if (that.data.page == 1) {
+            newsArr = [];
+          } else {
+            newsArr = that.data.course_list;
+          }
+          console.log(newsArr);
+          for (var i = 0; i < listdata.length; i++) {
+            newsArr.push(listdata[i])
+          }
           newsArr.forEach((item) => {
             item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
           })
-            that.setData({
-              course_list: newsArr,
-              total_count: res.data.data.total_count
-            });
+          that.setData({
+            course_list: newsArr,
+            total_count: res.data.data.total_count
+          });
         } else {
           wx.showToast({
             title: '暂无数据',
@@ -270,7 +273,7 @@ Page({
           });
         }
       },
-      fail: function (e) {
+      fail: function(e) {
         wx.showToast({
           title: '网络异常！',
           duration: 2000
@@ -279,9 +282,9 @@ Page({
     })
     wx.hideLoading();
   },
-  erjifenlie:function(a){
+  erjifenlie: function(a) {
     var t = a.currentTarget.dataset.id;
-    var that =this;
+    var that = this;
     wx.request({
       url: app.d.hostUrl + '/api/miniprogram/get_category_list',
       method: 'post',
@@ -291,28 +294,30 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
+          itemId: t,
           category_list2: res.data.data.category_list
         })
       }
     })
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
+    console.log(options)
     var that = this;
-    if (options.top_category){
+    if (options.top_category) {
       that.setData({
         top_category: options.top_category,
         flname: options.flname
       })
     }
-    if (options.is_hot){
+    if (options.is_hot) {
       that.setData({
         is_hot: options.is_hot,
-        kcname: options.kcname
+        kcname: options.kcname,
       })
-    } 
-    if (options.sort){
+    }
+    if (options.sort) {
       that.setData({
         sort: options.sort,
         xlname: options.xlname
@@ -337,12 +342,11 @@ Page({
     wx.request({
       url: app.d.hostUrl + '/api/miniprogram/get_category_list',
       method: 'post',
-      data: {
-      },
+      data: {},
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           category_list: res.data.data.category_list
         })
@@ -352,12 +356,12 @@ Page({
       url: app.d.hostUrl + '/api/miniprogram/get_category_list',
       method: 'post',
       data: {
-        parent_id:1
+        parent_id: 1
       },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           category_list2: res.data.data.category_list
         })
@@ -367,12 +371,19 @@ Page({
       url: app.d.hostUrl + '/api/area/get_district',
       method: 'post',
       data: {
-        city_id:app.d.province_id
+        city_id: app.d.province_id
       },
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
+      success: function(res) {
+        console.log(res)
+        res.data.district.unshift({
+          district: "附近",
+          district_id: "0",
+          father: "0",
+          rid: "0",
+        })
         that.setData({
           district_list: res.data.district
         })
@@ -380,7 +391,7 @@ Page({
     })
     that.getdata();
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     var that = this;
     var totalpage = parseInt((parseInt(that.data.total_count) + that.data.page_size - 1) / that.data.page_size);
     var curpage = that.data.page + 1;
@@ -392,7 +403,7 @@ Page({
         icon: 'success',
         duration: 2000
       })
-    }else{
+    } else {
       that.setData({
         page: curpage
       })

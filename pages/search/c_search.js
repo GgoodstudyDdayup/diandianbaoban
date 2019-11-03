@@ -38,10 +38,9 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-
-        if (res.data.data.total_count > 0 ) { 
-            var listdata = res.data.data.course_list;
-          
+        console.log(res)
+        if (res.data.code == 1 && res.data.data.course_list.length > 0) { 
+          var listdata = res.data.data.course_list;
             var newsArr=[];
             if(that.data.page==1){
               newsArr =[];

@@ -15,7 +15,8 @@ Page({
     wx.showLoading({
       title: '玩命加载中',
     })
-    if (app.d.userID == 0) {
+    console.log(app.d.userID)
+    if (wx.getStorageSync('userID') == 0 ) {
       wx.redirectTo({
         url: '../authorize/authorize'
       });
@@ -32,10 +33,11 @@ Page({
         success: function (res) {
           console.log(res)
           app.globalData.organization_id = res.data.data.users_model.organization_id
-          
+          app.d.userID = res.data.data.users_model.id
           that.setData({
             detail: res.data.data.users_model
           });
+          console.log(app.d.userID)
           //endInitDatad
           wx.hideLoading();
         },

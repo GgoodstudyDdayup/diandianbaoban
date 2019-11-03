@@ -20,3 +20,62 @@ checkbox .wx-checkbox-input{
 height:40px;
 border-radius:20px;
 }
+.banner{background-color: #ffffff; height: 200px;z-index:1}
+.slide-image{ width: 100%; height: 200px;}
+.top{padding:20rpx 10rpx; position: absolute;  z-index:55; }
+.city{ height: 70rpx; line-height: 70rpx; display: block; }
+.city .icons{ padding: 3px;}
+.city .icons image{ width: 15px; height: 15px; }
+.city .picker{ padding: 0px; height: 35px;overflow: hidden;}
+
+ .nav {
+    margin: 30rpx 0;
+    padding: 10rpx 20rpx;
+    overflow: hidden;
+}
+
+.nav .item {
+    width: 25%;
+    float: left;
+    padding: 20rpx 0;
+    text-align: center;
+    color: #777;
+    line-height: 8vw;
+}
+
+.nav .item>image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50rpx;
+    display: block;
+    margin: 0 auto;
+}
+
+.address{ padding:10px 0; line-height: 25px;}
+.address image{ width: 25px; height: 25px;}
+.ages { padding:5px 0 }
+.ages .item{ width: 15%;margin-right: 2%;}
+.ages .item:last-child{margin-right:0%;}
+
+.acticle{ padding:10px 0; overflow: hidden; }
+
+.baokuan{padding: 10px 0;}
+.baokuan .item{ clear: both; display: block; height: 140px; padding-top: 15px; line-height: 35px;}
+.baokuan .item image{width: 100%; height: 120px;border-radius: 5px;}
+.baokuan .item:last-child{border-bottom:none;}
+.baokuan .gou{ padding-top: 15px;}
+
+.fujin{padding: 10px 0;}
+.fujin .item{ clear: both; display: block; height: 140px; padding-top: 15px; line-height: 35px;}
+.fujin .item image{width: 100%; height: 120px;border-radius: 5px;}
+.fujin .item:last-child{border-bottom:none;}
+.fujin .gou{ padding-top: 15px;}
+
+.jigou{padding: 10px 0;}
+.jigou .item{ clear: both; display: block; height: 140px; padding-top: 15px; line-height: 35px;}
+.jigou .item image{width: 100%; height: 120px;border-radius: 5px;}
+.jigou .gou{ padding-top: 15px;}
+.bg-b{
+  background: #4395ff;
+  color: #fff
+}

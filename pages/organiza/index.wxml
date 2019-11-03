@@ -47,7 +47,7 @@
        <view class='fl_l w35' style='margin-right:5%;'><image src='{{item.logo}}' ></image></view>
        <view class='fl_l w60'>
          <view class='font_16'>{{item.name}}</view>
-         <view class='clear color_hui'><view class='fl_l'>{{item.address}}</view><view class='fl_r'>{{item.juli}}</view></view>
+         <view class='clear color_hui'><view class='fl_l' style="width: 150px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap">{{item.address}}</view><view class='fl_r'>{{item.juli}}</view></view>
          <view class='clear gou'>
            <block wx:for="{{item.shuoming}}" wx:for-item="bb" >
            <view class='fl_l' style='margin-rgint:5px'><view class='font_14 bg_bts  button' style='margin-right:5px; padding:0 5px;'>{{bb}}</view></view>

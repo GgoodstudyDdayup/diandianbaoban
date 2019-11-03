@@ -10,16 +10,17 @@
      </view>
      <view class='shit '>
        <view class='fl_l font_14' style='margin-right:5px;'>{{detail.buy_count}}人已经试听</view>
-       <view class='fl_l color_hong font_16'>参考价：￥{{detail.price}}/{{detail.class_hour}}课时</view>
+       <view class='fl_l color_hong font_16'>参考价：￥{{detail.price}}/1课时</view>
+       <!-- {{detail.class_hour}} -->
      </view>
   </view>
   <view class='height_10 bg_hs'></view>
 
   <view class='widt'>
     <view class='xqs'>
-      <view class='xqs_list bg_lan clear'><view class='fl_l'>适用对象：</view><view class='fl_r'>{{detail.use_object}}</view></view>
+      <view class='xqs_list bg_lan clear'><view class='fl_l'>适用对象：</view><view class='fl_r'>{{listuseObject}}</view></view>
        <view class='xqs_list bg_slan clear'><view class='fl_l'>班级类型：</view><view class='fl_r'>{{detail.class_type_str}}</view></view>
-        <view class='xqs_list bg_lan clear'><view class='fl_l'>课程类型：</view><view class='fl_r'>6-18岁</view></view>
+        <!-- <view class='xqs_list bg_lan clear'><view class='fl_l'>课程类型：</view><view class='fl_r'>6-18岁</view></view> -->
          <view class='xqs_list bg_slan clear'><view class='fl_l'>课时数：</view><view class='fl_r'>{{detail.class_hour}}</view></view>
           <view class='xqs_list bg_lan clear'><view class='fl_l'>日期：</view><view class='fl_r'>{{detail.class_date}}</view></view>
     </view>
@@ -37,7 +38,7 @@
    </view>
   
   <view class='widt clear'>
-  <view class='address'>
+  <view class='address' bindtap="address">
     <view class='fl_l'><image src='../../images/contact02.png'></image> </view>
     <view class='fl_l'><text>{{organization.address}}</text> </view>
     <view class='fl_r color_danhui' bindtap="maps">{{juli}}</view>
@@ -54,7 +55,7 @@
 </view>
 
 <view class='dibu'>
-    <view class='w50 fl_l tc font_14 color_bai bg_ls' bindtap='link' data-link='ding?id={{detail.id}}'>立即订购</view>
+    <view class='w50 fl_l tc font_14 color_bai bg_ls' bindtap='link2' data-link='ding?id={{detail.id}}'>立即订购</view>
    <view class='w50 fl_l tc font_14 color_bai bg_cs' bindtap='link' data-link='ting?id={{detail.id}}'>免费试听1节课</view>
 </view>
 

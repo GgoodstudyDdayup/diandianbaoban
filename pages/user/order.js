@@ -1,7 +1,7 @@
 const app = getApp();
 Page({
   data: {
-    types:2,
+    type:1,
     page: 1,
     total_count:1,
     page_size:5,
@@ -33,7 +33,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-
+        console.log(res)
         if (res.data.data.total_count > 0 ) { 
             that.setData({
               order_list: res.data.data.order_list
@@ -56,10 +56,12 @@ Page({
     wx.hideLoading();
   },
   onLoad: function (options) {
+    console.log(options)
     var that = this;
-    that.setData({
-      type: options.type
-    });
+    // that.setData({
+    //   type: options.type
+    // });
+    //暂时只有试听
     that.getdata();
   },
   onReachBottom: function () {
@@ -82,3 +84,6 @@ Page({
     }
   }
 })
+
+
+

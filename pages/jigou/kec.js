@@ -2,67 +2,68 @@ const app = getApp();
 Page({
   data: {
     page: 1,
-    total_count:1,
-    page_size:5,
-    organization_id:0,
+    total_count: 1,
+    page_size: 5,
+    organization_id: 0,
     str: '',
-    course_list:[]
+    course_list: []
   },
-  link: function (a) {
+  link: function(a) {
     var t = a.currentTarget.dataset.link;
-     wx.navigateTo({
+    wx.navigateTo({
       url: t
-     });
+    });
   },
-  shanchu:function(e){
+  shanchu: function(e) {
     var that = this;
     wx.showModal({
       title: '提示',
       content: '确定要删除吗？',
-      success: function (sm) {
-      if (sm.confirm) {
-        wx.request({
-          url: app.d.hostUrl + '/api/miniprogram/del_course',
-          method: 'post',
-          data: {
-            id: e.currentTarget.dataset.id,
-            organization_id: e.currentTarget.dataset.orid,
-          },
-          header: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          success: function (res) {
-            console.log(res.data.msg);
-            if (res.data.code == 1) {
-              wx.showToast({
-                title: '删除成功',
-                icon: 'success',
-                duration: 2000
-              })
-              wx.navigateTo({
-                url: 'index?id=' + e.currentTarget.dataset.orid
-              });
+      success: function(sm) {
+        if (sm.confirm) {
+          wx.request({
+            url: app.d.hostUrl + '/api/miniprogram/del_course',
+            method: 'post',
+            data: {
+              id: e.currentTarget.dataset.id,
+              organization_id: e.currentTarget.dataset.orid,
+            },
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function(res) {
+              console.log(res.data.msg);
+              if (res.data.code == 1) {
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }, 1000)
+              }
             }
-          }
-        })
+          })
+        } else if (sm.cancel) {
+          console.log('用户点击取消')
         }
-      else if(sm.cancel) {
-        console.log('用户点击取消')
       }
-     }
     })
-  
+
   },
-  formSubmit:function(e){
-   var that = this;
+  formSubmit: function(e) {
+    var that = this;
     this.setData({
       str: String(e.detail.value.keyword),
-      course_list:[]
+      course_list: []
     })
     console.log(that.data.str);
     this.getdata();
   },
-  getdata:function(){
+  getdata: function() {
     var that = this;
     wx.showLoading({
       title: '玩命加载中',
@@ -79,8 +80,8 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function (res) {
-        if (res.data.data.total_count > 0 ) { 
+      success: function(res) {
+        if (res.data.data.total_count > 0) {
           that.setData({
             course_list: res.data.data.course_list
           });
@@ -92,7 +93,7 @@ Page({
           })
         }
       },
-      fail: function (e) {
+      fail: function(e) {
         wx.showToast({
           title: '网络异常！',
           duration: 2000
@@ -101,7 +102,7 @@ Page({
     })
     wx.hideLoading();
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     if (options.str) {
       that.setData({
@@ -115,7 +116,7 @@ Page({
     }
     that.getdata();
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     var that = this;
     var totalpage = parseInt((parseInt(that.data.total_count) + that.data.page_size - 1) / that.data.page_size);
     var curpage = that.data.page + 1;
@@ -127,7 +128,7 @@ Page({
         icon: 'success',
         duration: 2000
       })
-    }else{
+    } else {
       that.setData({
         page: curpage
       })
