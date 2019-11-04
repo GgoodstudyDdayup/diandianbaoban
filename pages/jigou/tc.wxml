@@ -1,38 +1,52 @@
 <view class="page">
-   <view class='top widt'>
-   <form bindsubmit="formSubmit">
-    <view class='search'>
-      <view class='fl_l w85'><input class="text_input" placeholder="请输入老师名称"  name="keyword" value='{{str}}' /></view>
-      <view class='fl_r w15' ><button form-type="submit" class='submits'><image src='../../images/search.png'></image></button></view>
-    </view>
-   </form>
-   </view>
-
-<view class='widt clear shizi'>
-  <view class='clear nc'>
-    <block wx:for="{{teacher_list}}" wx:for-index="idx" wx:key="idx" >
-    <view class='bbe'>
-     <view class='fl_l w20'><image src='{{item.image}}'></image></view>
-     <view class='fl_l w65'>
-       <view class='font_14'>老师姓名：{{item.name}}</view>
-       <view class='color_danhui'>主授课程：{{item.teach}}</view>
-     </view>
-     <view class='fl_r w15 tr' style='padding-top:8px;display:flex'>
-        <view class=' fl_l' bindtap='shanchu' data-id='{{item.id}}' data-orid='{{organization_id}}' style=' margin:0 3px;' ><image src='../../images/del.png' style='width:20px; height:20px;'></image></view>
-        <view class='fl_r' data-link='tcedit?id={{item.id}}&&organization_id={{organization_id}}' bindtap='link'><image src='../../images/edit.png' style='width:20px; height:20px;'></image></view>
-     </view>
-     <view class='clear'></view>
-    </view>
-    </block>
-     <view class='clear'></view>
+  <view class='top widt'>
+    <form bindsubmit="formSubmit">
+      <view class='search'>
+        <view class='fl_l w85'>
+          <input class="text_input" placeholder="请输入老师名称" name="keyword" value='{{str}}' />
+        </view>
+        <view class='fl_r w15'>
+          <button form-type="submit" class='submits'>
+            <image src='../../images/search.png'></image>
+          </button>
+        </view>
+      </view>
+    </form>
   </view>
 
-  <view class='clear sts'>
-       <button bindtap='link' data-link='tcadd?id={{organization_id}}' class='button1 bg_cs tc color_bai'>新增老师</button>
-  </view>
-</view>
+  <view class='widt clear shizi'>
+    <view class='clear nc'>
+      <block wx:for="{{teacher_list}}" wx:for-index="idx" wx:key="idx">
+        <view class='bbe'>
+          <view class='fl_l w20'>
+            <image src='{{item.image}}'></image>
+          </view>
+          <view class='fl_l w65'>
+            <view class='font_14'>老师姓名：{{item.name}}</view>
+            <view class='color_danhui'>主授课程：{{item.teach}}</view>
+          </view>
+          <view class='fl_r  tr' style='padding-top:8px;display:flex'>
+            <view class='clear gou'>
+              <view class='fl_r'>
+                <view class='bg_cs button color_bai tc fl_l' bindtap='shanchu' data-id='{{item.id}}' data-orid='{{organization_id}}' style='padding:0 10px;margin:0 5px'>删除</view>
+                <view class='bg_cs button color_bai tc fl_l' bindtap='link' data-link='tcedit?id={{item.id}}&&organization_id={{organization_id}}' style='padding:0 10px;'>修改</view>
+              </view>
+            </view>
+            <!-- <view class=' fl_l' bindtap='shanchu' data-id='{{item.id}}' data-orid='{{organization_id}}' style=' margin:0 3px;' ><image src='../../images/del.png' style='width:20px; height:20px;'></image></view>
+        <view class='fl_r' data-link='tcedit?id={{item.id}}&&organization_id={{organization_id}}' bindtap='link'><image src='../../images/edit.png' style='width:20px; height:20px;'></image></view> -->
+          </view>
+          <view class='clear'></view>
+        </view>
+      </block>
+      <view class='clear'></view>
+    </view>
 
-<view class='widt fotter tc color_hui'>
-   <image src='../../images/tel.png'></image>客服热线：0512-87313378
-</view>
+    <view class='clear sts'>
+      <button bindtap='link' data-link='tcadd?id={{organization_id}}' class='button1 bg_cs tc color_bai'>新增老师</button>
+    </view>
+  </view>
+
+  <view class='widt fotter tc color_hui'>
+    <image src='../../images/tel.png'></image>客服热线：0512-87313378
+  </view>
 </view>

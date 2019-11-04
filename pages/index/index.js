@@ -12,14 +12,14 @@ Page({
     current_city: '苏州市',
     cityname: ''
   },
-  onShareAppMessage: function() {
-    let users = wx.getStorageSync('user');
-    if (res.from === 'button') {}
+  onShareAppMessage: function(e) {
+    console.log(e)
+    // let users = wx.getStorageSync('user');
     return {
-      title: '转发',
-      path: '/pages/index/index',
+      title: '点点报班',
+      path: `/pages/index/index?recommendid=${app.globalData.userID}`,
       success: function(res) {
-        
+        console.log(111)
       }
     }
   },
@@ -35,7 +35,12 @@ Page({
       url: t
     });
   },
-  onLoad: function() {
+  onLoad: function(e) {
+    console.log(e)
+    if (e.recommendid){
+      app.globalData.recommendid = e.recommendid
+      
+    }
     var that = this;
     wx.showLoading({
       title: '玩命加载中',
@@ -47,26 +52,32 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
+        wx.getLocation({
+          type: 'wgs84',
+          success(data) {
+            app.globalData.location.latitude = data.latitude
+            app.globalData.location.longitude = data.longitude
+            var indexdata = res.data.data;
+            indexdata.hot_course_list.forEach((item) => {
+              item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
+            })
+            indexdata.near_organization_list.forEach((item) => {
+              item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
+              item.shuoming = item.category_str.split(",");
+            })
+            console.log(app.globalData.location.latitude);
+            console.log(app.globalData.location.longitude)
+            that.setData({
+              banner: indexdata.banner_model,
+              nav: indexdata.category_list,
+              hot_course_list: indexdata.hot_course_list,
+              near_course_list: indexdata.near_course_list,
+              near_organization_list: indexdata.near_organization_list,
+              acticle: indexdata.article_list,
+            });
+          }
+        })
         console.log(res)
-        var indexdata = res.data.data;
-        indexdata.hot_course_list.forEach((item) => {
-          item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
-        })
-
-        indexdata.near_organization_list.forEach((item) => {
-          item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
-          item.shuoming = item.category_str.split(",");
-        })
-
-        console.log(app.globalData.location.latitude);
-        that.setData({
-          banner: indexdata.banner_model,
-          nav: indexdata.category_list,
-          hot_course_list: indexdata.hot_course_list,
-          near_course_list: indexdata.near_course_list,
-          near_organization_list: indexdata.near_organization_list,
-          acticle: indexdata.article_list,
-        });
         //endInitDatad
       },
       fail: function(e) {

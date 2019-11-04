@@ -128,7 +128,7 @@
          <view class='clear color_hui'><view class='fl_l'>{{item.address}}</view><view class='fl_r'>{{item.juli}}</view></view>
          <view class='clear gou'>
           <block wx:for="{{item.shuoming}}" wx:for-item="bb" >
-           <view class='fl_l' style='margin-rgint:5px;display:flex'><view class='font_14 bg_bts  button' style='margin-right:5px;padding: 0 5px;width: 70pt;height: 30px;line-height:30px;text-align: center;'>{{bb}}</view></view>
+           <view class='fl_l' style='margin-rgint:5px;display:flex'><view class='font_14 bg_bts  button' style='margin-right:5px;padding: 0 5px;height: 30px;line-height:30px;text-align: center;'>{{bb}}</view></view>
            
            </block>
          </view>

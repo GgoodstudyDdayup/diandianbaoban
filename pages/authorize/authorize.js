@@ -44,7 +44,8 @@ Page({
           Y: app.globalData.location.latitude,
           X: app.globalData.location.longitude,
           CITYID: app.d.province_id,
-          country: e.detail.userInfo.country
+          country: e.detail.userInfo.country,
+          recommendid: app.globalData.recommendid
         },
         method: 'POST',
         header: {

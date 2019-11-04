@@ -3,7 +3,20 @@ Page({
   data: {
     detail: []
   },
+  onShareAppMessage: function () {
+    let users = wx.getStorageSync('user');
+    return {
+      title: '点点报班',
+      path: `pages/organiza/tcdetail?recommendid = ${app.globalData.userID}`,
+      success: function (res) {
+
+      }
+    }
+  },
   onLoad: function (options) {
+    if (options.recommendid){
+      app.globalData.recommendid = options.recommendid
+    }
     var that = this;
     wx.showLoading({
       title: '玩命加载中',

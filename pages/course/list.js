@@ -31,9 +31,8 @@ Page({
     if (res.from === 'button') {}
     return {
       title: '转发',
-      path: 'pages/course/list',
+      path: `pages/course/list?recommendid=${app.globalData.userID}`,
       success: function(res) {
-
       }
     }
   },
@@ -303,6 +302,9 @@ Page({
     })
   },
   onLoad: function(options) {
+    if (options.recommendid) {
+      app.globalData.recommendid = options.recommendid
+    }
     console.log(options)
     var that = this;
     if (options.top_category) {

@@ -14,13 +14,16 @@ Page({
     if (res.from === 'button') { }
     return {
       title: '转发',
-      path: 'pages/course/index',
+      path: `pages/course/index?recommendid=${app.globalData.userID }`,
       success: function (res) {
 
       }
     }
   },
-  onLoad: function () {
+  onLoad: function (e) {
+    if (e.recommendid) {
+      app.globalData.recommendid = e.recommendid
+    }
     var that = this;
     wx.showLoading({
       title: '玩命加载中',

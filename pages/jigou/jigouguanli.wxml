@@ -10,14 +10,14 @@
       </view>
       <view class='bbe list clear'>
         <view class='fl_l w30'>机构logo：</view>
-        
+
         <view class='fl_r w70'>
           <view bindtap="changeAvatar" class='fl_l' style='padding-top:5px'>
             <image src='../../images/add.png' style='width:30px;' mode='widthFix'></image>
           </view>
           <!-- <view wx:if='{{logo}}' style='padding-left:20px;' class='fl_l'> -->
-            <image src='{{f1_img.logo || category_list.logo}}' bindlongpress="del" data-logo='logo' style='width:25px; height:25px;' mode='widthFix'></image>
-            <text style="color:#dfdfdf; position: relative;font-size:11px">（长按删除 尺寸137*120）</text>
+          <image src='{{f1_img.logo }}' bindlongpress="del" data-logo='logo' style='width:25px; height:25px;' mode='widthFix'></image>
+          <text style="color:#dfdfdf; position: relative;font-size:11px">（长按删除 尺寸137*120）</text>
           <!-- </view> -->
         </view>
         <view class='clear'></view>
@@ -29,22 +29,22 @@
             <image src='../../images/add.png' style='width:30px;' mode='widthFix'></image>
           </view>
           <!-- <view wx:if='{{banner}}' style='padding-left:20px;' class='fl_l'> -->
-            <image src='{{f1_img.banner || category_list.banner}}' bindlongpress="del" data-logo='banner' style='width:25px; height:25px;' mode='widthFix'></image>
-            <text style="color:#dfdfdf; position: relative;font-size:11px">（长按删除 尺寸414*200）</text>
+          <image src='{{f1_img.banner }}' bindlongpress="del" data-logo='banner' style='width:25px; height:25px;' mode='widthFix'></image>
+          <text style="color:#dfdfdf; position: relative;font-size:11px">（长按删除 尺寸414*200）</text>
           <!-- </view> -->
         </view>
         <view class='clear'></view>
       </view>
       <view class='bbe list clear'>
         <view class='fl_l w30'>形象墙：</view>
-        <view class='fl_r w70'>
-          <view bindtap="changeAvatar3" class='fl_l' style='padding-top:5px'>
+        <view class='fl_r w70' style="display: flex;flex-flow: wrap;">
+          <view bindtap="changeAvatar3" class='fl_l' style='padding-top:5px;width:100%'>
             <image src='../../images/add.png' style='width:30px;' mode='widthFix'></image>
-          </view>
-          <!-- <view wx:if='{{show_imges}}' style='padding-left:20px;' class='fl_l'> -->
-            <image src='{{f1_img.show_imges || category_list.show_imges}}' bindlongpress="del" data-logo='show_imges' style='width:25px; height:25px;' mode='widthFix'></image>
             <text style="color:#dfdfdf ;position: relative;font-size:11px">（长按删除 尺寸177*150）</text>
-          <!-- </view> -->
+          </view>
+          <view wx:for='{{f1_img.show_imges }}' wx:key="index" style='padding-left:20px;' class='fl_l'>
+            <image src='{{item || item.show_imges}}' data-index="{{index}}" bindlongpress="del" data-logo='show_imges' style='width:25px; height:25px;' mode='widthFix'></image>
+          </view>
         </view>
         <view class='clear'></view>
       </view>
@@ -88,7 +88,7 @@
       <view class='list' style='padding-top:5px;'>
         <view>机构介绍：</view>
         <view class='bbe bte bre ble' style='margin:10px 0;'>
-          <textarea placeholder="在文本框中输入内容" name='introduce' style='height:100px;' value="{{category_list.introduce}}"/>
+          <textarea placeholder="在文本框中输入内容" name='introduce' style='height:100px;' value="{{category_list.introduce}}" />
         </view>
       </view>
       <view class='clear sts'>

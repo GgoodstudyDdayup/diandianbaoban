@@ -9,6 +9,11 @@ Page({
       url: t
       })
   },
+  headTap(e){
+    wx.navigateTo({
+      url: `jigouguanli?id=${this.data.detail.id}`
+    })
+  },
   onLoad: function (options) {
     var that = this;
     console.log(app.d.userID);

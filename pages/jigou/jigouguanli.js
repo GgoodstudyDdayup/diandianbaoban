@@ -6,11 +6,11 @@ Page({
     f1_img: {
       logo: '',
       banner: '',
-      show_imges: ''
+      show_imges: []
     },
     logo: '',
     banner: '',
-    show_imges: '',
+    show_imges: [],
     jigou: '',
     xieyi: 1,
     tels: '',
@@ -87,10 +87,11 @@ Page({
     let location_x = that.data.location_x || that.data.category_list.location_x
     let location_y = that.data.location_y || that.data.category_list.location_y
     let address = that.data.current_address || that.data.category_list.address
-    let logo = that.data.logo || ''
-    let banner = that.data.banner || ''
-    let show_img = that.data.show_imges || ''
-    console.log(logo, banner, show_img)
+    let logo = that.data.f1_img.logo || that.data.category_list.logo
+    let banner = that.data.f1_img.banner || that.data.category_list.banner
+    let show_imges = that.data.f1_img.show_imges || that.data.category_list.show_imges
+    show_imges = show_imges.join(',')
+    // console.log(logo, banner, show_img)
     if (sqr == '' || tel == '' || add == '' || linkname == '' || introduce == '') {
       wx.showModal({
         title: '提示',
@@ -110,7 +111,7 @@ Page({
           address,
           introduce,
           logo,
-          show_img,
+          show_imges,
           banner
         },
         header: {
@@ -153,14 +154,21 @@ Page({
       },
       success: function(res) {
         console.log(res)
+        let f1_img = that.data.f1_img
+        f1_img.show_imges = res.data.data.organization_model.show_imges.split(',')
+        f1_img.banner = res.data.data.organization_model.banner
+        f1_img.logo = res.data.data.organization_model.logo
         that.setData({
-          category_list: res.data.data.organization_model
+          category_list: res.data.data.organization_model,
+          f1_img
         })
+        console.log(f1_img.show_imges)
       }
     })
     wx.hideLoading();
   },
   del(e) {
+    console.log(e)
     let that = this
     let category_list = that.data.category_list
     let f1_img = that.data.f1_img
@@ -169,19 +177,25 @@ Page({
       content: '你确定要删除这张照片吗？',
       success(res) {
         if (res.confirm) {
-          if (f1_img[`${e.currentTarget.dataset.logo}`] == '') {
-            console.log(111)
-            category_list[`${e.currentTarget.dataset.logo}`] = ''
+          if (e.currentTarget.dataset.logo == 'show_imges') {
+            let i = e.currentTarget.dataset.index
+            console.log(i)
+            console.log(f1_img.show_imges)
+            f1_img.show_imges.splice(i, 1)
             that.setData({
-              category_list
+              f1_img
             })
-          } else {
-            f1_img[`${e.currentTarget.dataset.logo}`] = ''
+          } else if (e.currentTarget.dataset.logo == 'logo'){
+            f1_img.logo = ''
+            that.setData({
+              f1_img
+            })
+          }else{
+            f1_img.banner = ''
             that.setData({
               f1_img
             })
           }
-
         } else if (res.cancel) {
           return false
         }
@@ -310,10 +324,12 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         let f1_img = that.data.f1_img
-        f1_img.show_imges = res.tempFilePaths[0]
-        that.setData({
-          f1_img
-        })
+        console.log(res.tempFilePaths[0])
+        // f1_img.show_imges.push(res.tempFilePaths[0])
+        // that.setData({
+        //   f1_img
+        // })
+        // console.log(f1_img.show_imges)
         //这里是上传操作
         wx.uploadFile({
           url: app.d.hostUrl + '/api/upload/upload_single_img',
@@ -330,10 +346,10 @@ Page({
             console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
-              let show_imges = that.data.show_imges
-              show_imges = app.d.hostUrl + '/' + pic.single_file_path
+              f1_img.show_imges.push(`${app.d.hostUrl}/${pic.single_file_path}`)
+              // show_imges = app.d.hostUrl + '/' + pic.single_file_path
               that.setData({
-                show_imges
+                f1_img
               })
               wx.hideToast();
             }

@@ -241,8 +241,22 @@ Page({
       }
     })
   },
+  onShareAppMessage: function () {
+    let users = wx.getStorageSync('user');
+    if (res.from === 'button') { }
+    return {
+      title: '转发',
+      path: `pages/organiza/list?recommendid=${app.globalData.userID}`,
+      success: function (res) {
+
+      }
+    }
+  },
   onLoad: function (options) {
     var that = this;
+    if (options.recommendid){
+      app.globalData.recommendid = options.recommendid
+    }
     if (options.top_category){
       that.setData({
         top_category: options.top_category,

@@ -28,7 +28,6 @@ App({
               var data = ress.data;
               console.log(ress);
               if (data.code == 1) {
-
                 that.globalData.sessionId = data.data.session_key;
                 that.globalData.openid = data.data.openid;
                 console.log(that.globalData.openid);

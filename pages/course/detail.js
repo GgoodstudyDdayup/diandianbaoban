@@ -50,18 +50,20 @@ Page({
       phoneNumber: t
     })
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     let users = wx.getStorageSync('user');
-    if (res.from === 'button') {}
+    if (res.from === 'button') { }
     return {
       title: '转发',
-      path: 'pages/course/detail',
-      success: function(res) {
-
+      path: `pages/course/detail?recommendid=${app.globalData.userID}`,
+      success: function (res) {
       }
     }
   },
   onLoad: function(options) {
+    if (options.recommendid){
+      app.globalData.options = options.recommendid
+    }
     var that = this;
     wx.request({
       url: app.d.hostUrl + '/api/miniprogram/get_course_detail',

@@ -1,6 +1,6 @@
 <view class="page">
   <view class='top'>
-    <view class='logo tc fl_l w40'>
+    <view class='logo tc fl_l w40' bindtap="headTap">
       <image src='{{detail.logo}}'></image>
     </view>
     <view class='nickname font_16  color_bai fl_r w60'>{{detail.name}}</view>

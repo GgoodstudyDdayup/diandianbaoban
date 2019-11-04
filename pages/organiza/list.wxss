@@ -67,9 +67,9 @@
 .baokuan .item {
   clear: both;
   display: block;
-  height: 140px;
   padding-top: 15px;
   line-height: 35px;
+  height: 170px
 }
 
 .baokuan .item image {
