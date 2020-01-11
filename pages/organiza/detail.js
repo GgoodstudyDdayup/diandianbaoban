@@ -71,8 +71,8 @@ Page({
       },
       success: function(res) {
         console.log(res)
-        var a = res.data.data.organization_model.show_imges.split(",");
-        var b = res.data.data.organization_model.category_str.split(",");
+        var a = res.data.data.organization_model.show_imges?res.data.data.organization_model.show_imges.split(","):'';
+        var b = res.data.data.organization_model.category_str?res.data.data.organization_model.category_str.split(","):'';
         var newsArr = res.data.data.comment_list;
         newsArr.forEach((item) => {
           item.one_1 = parseInt(item.star);

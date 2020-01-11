@@ -44,7 +44,7 @@
   <view class='clear'>
     <block wx:for="{{near_course_list}}" wx:for-index="idx" wx:key="idx">
       <navigator url='../course/detail?id={{item.id}}' class='item bbe' hover-class="none">
-       <view class='fl_l w35' style='margin-right:5%;'><image src='{{item.banner}}' ></image></view>
+       <view class='fl_l w35' style='margin-right:5%;'><image src='{{item.banner}}' mode="aspectFill"></image></view>
        <view class='fl_l w60'>
          <view class='font_16'>{{item.course_name}}</view>
          <view class='clear color_hui'>{{item.organization_name}}</view>

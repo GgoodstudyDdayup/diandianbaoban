@@ -3,24 +3,24 @@ Page({
   data: {
     detail: [],
   },
-  link: function (a) {
+  link: function(a) {
     var t = a.currentTarget.dataset.link;
     wx.navigateTo({
       url: t
     });
   },
-  onLoad: function () {
+  onLoad: function() {
     var that = this;
     console.log(app.d.userID);
     wx.showLoading({
       title: '玩命加载中',
     })
     console.log(app.d.userID)
-    if (wx.getStorageSync('userID') == 0 ) {
+    if (wx.getStorageSync('userID') == 0) {
       wx.redirectTo({
         url: '../authorize/authorize'
       });
-    }else{
+    } else {
       wx.request({
         url: app.d.hostUrl + '/api/miniprogram/get_userinfo',
         method: 'post',
@@ -30,16 +30,23 @@ Page({
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res)
-          app.globalData.organization_id = res.data.data.users_model.organization_id
-          app.d.userID = res.data.data.users_model.id
-          that.setData({
-            detail: res.data.data.users_model
-          });
-          console.log(app.d.userID)
-          //endInitDatad
-          wx.hideLoading();
+          if (res.data.msg == '该会员不存在') {
+            wx.hideLoading();
+            wx.navigateTo({
+              url: '../authorize/authorize',
+            })
+          } else {
+            app.globalData.organization_id = res.data.data.users_model.organization_id
+            app.d.userID = res.data.data.users_model.id
+            that.setData({
+              detail: res.data.data.users_model
+            });
+            console.log(app.d.userID)
+            //endInitDatad
+            wx.hideLoading();
+          }
         },
       })
     }

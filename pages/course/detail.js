@@ -80,6 +80,8 @@ Page({
         let listuseObject = res.data.data.course_age_list.map(res=>{
           return cssString[res.age_id]
         })
+        const imgList = res.data.data.course_model.show_images.split(',')
+        console.log(imgList)
         listuseObject = listuseObject.join('/')
         var juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, res.data.data.course_model.location_y, res.data.data.course_model.location_x);
         that.setData({
@@ -88,7 +90,8 @@ Page({
           organization: res.data.data.organization_model,
           location_x: res.data.data.organization_model.location_x,
           location_y: res.data.data.organization_model.location_y,
-          listuseObject
+          listuseObject,
+          imgList//图片集
         })
       }
     })

@@ -42,8 +42,24 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
+        console.log(res)
         that.setData({
           tels: res.data.phoneNumber
+        })
+        wx.request({
+          url: app.d.hostUrl + '/api/miniprogram/get_phone',
+          method: 'post',
+          data: {
+            user_id: wx.getStorageSync('userID'),
+            mobile: that.data.tels,
+          },
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          success: function(res) {
+            console.log(res)
+            
+          }
         })
       }
     })
@@ -128,7 +144,7 @@ Page({
     this.setData({
       parameter: this.data.parameter,
     })
-    if (app.d.userID == 0) {
+    if (wx.getStorageSync('userID')==0) {
       wx.redirectTo({
         url: '../authorize/authorize'
       });
@@ -150,6 +166,4 @@ Page({
       })
     }
   }
-
-
 })

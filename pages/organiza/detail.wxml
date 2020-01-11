@@ -8,11 +8,11 @@
       <view class='title'>
         <view class='font_18'>{{detail.name}}</view>
         <view class='font_12' style='padding:5px 0'>
-          <block wx:for="{{aab}}" wx:for-index="idx" wx:key="idx">
+          <!-- <block wx:for="{{aab}}" wx:for-index="idx" wx:key="idx">
             <view class='fl_l' style='margin-rgint:5px'>
               <view class='bg_bts  button' style='margin-right:5px; padding:0 5px;'>{{item}}</view>
             </view>
-          </block>
+          </block> -->
         </view>
         <view class='clear'></view>
       </view>
@@ -50,7 +50,7 @@
         <block wx:for="{{course_list}}" wx:for-index="idx" wx:key="idx" wx:if="{{idx<3}}">
           <navigator url='../course/detail?id={{item.id}}' class='item bbe' hover-class="none">
             <view class='fl_l w35' style='margin-right:5%;'>
-              <image src='{{item.banner}}'></image>
+              <image src='{{item.banner}}' mode="aspectFill"></image>
             </view>
             <view class='fl_l w60'>
               <view class='font_16'>{{item.course_name}}</view>
@@ -74,7 +74,7 @@
       <view class='clear nc'>
         <block wx:for="{{xxq}}" wx:for-index="idx" wx:key="idx" wx:if="{{idx<2}}">
           <view class='w50 fl_l'>
-            <image src='{{item}}'> </image>
+            <image src='{{item}}' mode="aspectFill"> </image>
           </view>
         </block>
         <view class='clear'></view>
@@ -91,7 +91,7 @@
           <navigator url='tcdetail?id={{item.id}}&organization_id={{detail.id}}' hover-class="none">
             <view class='bbe'>
               <view class='fl_l w20'>
-                <image src='{{item.image}}'></image>
+                <image src='{{item.image}}' mode="aspectFill"></image>
               </view>
               <view class='fl_l w80'>
                 <view class='font_14'>老师姓名：{{item.name}}</view>
@@ -116,16 +116,16 @@
         <block wx:for="{{comment}}" wx:for-index="idx" wx:key="idx" wx:if="{{idx<2}}">
           <view class='bbe'>
             <view class='fl_l w25'>
-              <image src='{{item.headimgurl}}'></image>
+              <image src='{{item.headimgurl}}' mode="aspectFill"></image>
             </view>
             <view class='fl_l w70'>
               <view class='font_14'>{{item.nickname}}</view>
               <view class='start'>
                 <block wx:for="{{item.one_1}}" wx:for-index="idx" wx:key="idx">
-                  <image src='../../images/star.png'></image>
+                  <image src='../../images/star.png' mode="aspectFill"></image>
                 </block>
                 <block wx:for="{{item.two_1}}" wx:key="item">
-                  <image src='../../images/starg.png'></image>
+                  <image src='../../images/starg.png' mode="aspectFill"></image>
                 </block>
               </view>
               <view class='color_danhui font_12'>{{item.content}}</view>
@@ -137,7 +137,7 @@
     </view>
 
     <view class='widt fotter tc color_hui'>
-      <image src='../../images/tel.png'></image>客服热线：0512-87313378
+      <image src='../../images/tel.png' mode="aspectFill"></image>客服热线：0512-87313378
     </view>
 
     <view class='dibu'>

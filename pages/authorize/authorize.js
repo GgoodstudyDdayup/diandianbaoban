@@ -4,14 +4,14 @@ Page({
     //判断小程序的API，回调，参数，组件等是否在当前版本可用。
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  onLoad: function() {
+  onLoad: function () {
     var that = this;
     // 查看是否授权
     wx.getSetting({
-      success: function(res) {
+      success: function (res) {
         if (res.authSetting['scope.userInfo']) {
           wx.getUserInfo({
-            success: function(res) {
+            success: function (res) {
               //从数据库获取用户信息
               that.queryUsreInfo();
               console.log(app.d.userID);
@@ -26,7 +26,7 @@ Page({
     })
   },
 
-  bindGetUserInfo: function(e) {
+  bindGetUserInfo: function (e) {
     console.log(e)
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
@@ -51,12 +51,8 @@ Page({
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        success: function(res) {
+        success: function (res) {
           //从数据库获取用户信息
-          console.log(res)
-          console.log(app.globalData.location.latitude);
-          console.log(app.globalData.location.longitude);
-          console.log(res.data.msg);
           if (res.data.code == 1 || res.data.code == -1) {
             that.queryUsreInfo();
           } else {
@@ -67,7 +63,6 @@ Page({
           }
         }
       });
-      
     } else {
       //用户按了拒绝按钮
       wx.showModal({
@@ -75,7 +70,7 @@ Page({
         content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
         showCancel: false,
         confirmText: '返回授权',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             console.log('用户点击了“返回授权”')
           }
@@ -84,7 +79,7 @@ Page({
     }
   },
   //获取用户信息接口
-  queryUsreInfo: function() {
+  queryUsreInfo: function () {
     wx.request({
       url: app.d.hostUrl + '/api/miniprogram/get_userinfo',
       method: 'post',
@@ -94,10 +89,11 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function(res) {
+      success: function (res) {
         if (res.data.code == 1) {
           app.globalData.userInfo = res.data.data.users_model;
           app.d.userID = res.data.data.users_model.id;
+          wx.setStorageSync('userID', res.data.data.users_model.id)
           //授权成功后，跳转进入小程序首页
           console.log(app.d.userID);
           wx.switchTab({
@@ -108,7 +104,7 @@ Page({
           console.log(app.d.userID);
         }
       },
-      fail: function(e) {
+      fail: function (e) {
         wx.showToast({
           title: '网络异常！',
           duration: 2000
@@ -116,5 +112,4 @@ Page({
       },
     });
   }
-
 })
