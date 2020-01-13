@@ -52,6 +52,7 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
+        console.log(res)
         wx.getLocation({
           type: 'wgs84',
           success(data) {
@@ -267,6 +268,11 @@ Page({
       }
     });
   },
+  tel(){
+    wx.makePhoneCall({
+      phoneNumber: '4006-985-017' //仅为示例，并非真实的电话号码
+    })
+  }
   // onShow: function() {
   //   this.onLoad();
   // }

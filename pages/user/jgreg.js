@@ -8,24 +8,26 @@ Page({
     jigou: '',
     xieyi: 1,
     tels: '',
+    includ: '',
     current_address: '',
+
     f1_img: {
       logo: '',
       banner: '',
       show_imges: ''
     }
   },
-  maps: function() {
+  maps: function () {
     var that = this;
     wx.chooseLocation({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           current_address: res.address
         })
       }
     });
   },
-  link: function(a) {
+  link: function (a) {
     var t = a.currentTarget.dataset.link;
     wx.navigateTo({
       url: t
@@ -45,6 +47,7 @@ Page({
     console.log(that.data.xieyi);
   },
   checkboxChange(e) {
+    console.log(e)
     var that = this;
     that.setData({
       jigou: e.detail.value,
@@ -63,14 +66,14 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function(res) {
+      success: function (res) {
         that.setData({
           tels: res.data.phoneNumber
         })
       }
     })
   },
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     var that = this;
     var flag = true;
     var sqr = e.detail.value.names;
@@ -113,7 +116,7 @@ Page({
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        success: function(res) {
+        success: function (res) {
           console.log(that.data.logo);
           console.log(res.data.msg);
           console.log(that.data.jigou);
@@ -125,8 +128,8 @@ Page({
               wx.switchTab({
                 url: 'index'
               })
-            },500)
-          }else{
+            }, 500)
+          } else {
             wx.showToast({
               title: `${res.data.msg}`,
             })
@@ -135,8 +138,22 @@ Page({
       })
     }
   },
-  onLoad: function(options) {
+
+
+  onLoad: function (options) {
     var that = this;
+    if (wx.getStorageSync('outData')) {
+      that.setData({
+        linkname: wx.getStorageSync('outData').linkname,
+        banner: wx.getStorageSync('outData').banner,
+        logo: wx.getStorageSync('outData').logo,
+        show_imges:wx.getStorageSync('outData').show_imges,
+        address: wx.getStorageSync('outData').address,
+        tel: wx.getStorageSync('outData').tel,
+        name:wx.getStorageSync('outData').name,
+        introduce:wx.getStorageSync('outData').introduce,
+      })
+    }
     //判断是否审核
     wx.request({
       url: app.d.hostUrl + '/api/miniprogram/get_userinfo',
@@ -147,7 +164,7 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function(res) {
+      success: function (res) {
         if (res.data.data.users_model.organization_state == 1 || res.data.data.users_model.organization_state == 2) {
           wx.showModal({
             title: '提示',
@@ -155,7 +172,7 @@ Page({
           })
           wx.switchTab({
             url: 'index',
-            success: function(e) {
+            success: function (e) {
               var page = getCurrentPages().pop();
               if (page == undefined || page == null) return;
               page.onLoad();
@@ -171,7 +188,7 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function(res) {
+      success: function (res) {
         that.setData({
           category_list: res.data.data.category_list
         })
@@ -179,13 +196,13 @@ Page({
     })
     wx.hideLoading();
   },
-  changeAvatar1: function(e) {
+  changeAvatar1: function (e) {
     var that = this
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function(res) {
+      success: function (res) {
 
         wx.showToast({
           title: '正在上传...',
@@ -208,7 +225,7 @@ Page({
             //和服务器约定的token, 一般也可以放在header中
             'session_token': wx.getStorageSync('session_token')
           },
-          success: function(res) {
+          success: function (res) {
             console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
@@ -221,24 +238,24 @@ Page({
 
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         wx.hideToast();
         wx.showModal({
           title: '错误提示',
           content: '上传图片失败',
           showCancel: false,
-          success: function(res) {}
+          success: function (res) { }
         })
       }
     })
   },
-  changeAvatar: function(e) {
+  changeAvatar: function (e) {
     var that = this
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function(res) {
+      success: function (res) {
         wx.showToast({
           title: '正在上传...',
           icon: 'loading',
@@ -260,7 +277,7 @@ Page({
             //和服务器约定的token, 一般也可以放在header中
             'session_token': wx.getStorageSync('session_token')
           },
-          success: function(res) {
+          success: function (res) {
             console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
@@ -273,24 +290,24 @@ Page({
 
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         wx.hideToast();
         wx.showModal({
           title: '错误提示',
           content: '上传图片失败',
           showCancel: false,
-          success: function(res) {}
+          success: function (res) { }
         })
       }
     })
   },
-  changeAvatar3: function(e) {
+  changeAvatar3: function (e) {
     var that = this
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function(res) {
+      success: function (res) {
         wx.showToast({
           title: '正在上传...',
           icon: 'loading',
@@ -311,7 +328,7 @@ Page({
             //和服务器约定的token, 一般也可以放在header中
             'session_token': wx.getStorageSync('session_token')
           },
-          success: function(res) {
+          success: function (res) {
             console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
@@ -324,13 +341,13 @@ Page({
 
         })
       },
-      fail: function(res) {
+      fail: function (res) {
         wx.hideToast();
         wx.showModal({
           title: '错误提示',
           content: '上传图片失败',
           showCancel: false,
-          success: function(res) {}
+          success: function (res) { }
         })
       }
     })
@@ -364,6 +381,27 @@ Page({
     })
     console.log(e)
   },
+  bindKeyInput: function (e) {
+    console.log(e)
+    this.setData({
+      [e.currentTarget.dataset.name]: e.detail.value
+    })
+  },
 
+  onHide(e) {
+    const _that = this.data
+    const params = {
+      banner: _that.banner || '',
+      logo: _that.logo || '',
+      show_imges: _that.show_imges || '',
+      address: _that.address || '',
+      tel: _that.tel || '',
+      name: _that.name || '',
+      linkname: _that.linkname || '',
+      introduce: _that.introduce || ''
+    }
+    wx.setStorageSync('outData', params)
+    console.log(wx.getStorageSync('outData'))
+  }
 
 })

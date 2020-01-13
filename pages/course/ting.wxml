@@ -37,6 +37,6 @@ open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手�
   </view>
 
 <view class='widt fotter tc color_hui'>
-   <image src='../../images/tel.png'></image>客服热线：0512-87313378
+   <image src='../../images/tel.png'></image>客服热线：4006-985-017
 </view>
 </view>

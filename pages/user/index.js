@@ -52,6 +52,11 @@ Page({
     }
 
   },
+  tel(){
+    wx.makePhoneCall({
+      phoneNumber: '4006-985-017' //仅为示例，并非真实的电话号码
+    })
+  }
   // onShow: function () {
   //   this.onLoad();
   // }

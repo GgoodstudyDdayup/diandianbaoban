@@ -5,7 +5,7 @@
       <view class='bbe list'>
         <view class='fl_l w30'>机构名称：</view>
         <view class='fl_r w70'>
-          <input class="text_input" placeholder='请输入详细的机构名称' name="names" />
+          <input class="text_input" placeholder='请输入详细的机构名称' name="names" data-name="name" value="{{name}}" bindinput="bindKeyInput" />
         </view>
         <view class='clear'></view>
       </view>
@@ -51,7 +51,7 @@
       <view class='bbe list clear'>
         <view class='fl_l w30'>详细地址：</view>
         <view class='fl_l w50'>
-          <input class="text_input" name="address" placeholder='请输入详细的机构地址' value='{{current_address}}' />
+          <input class="text_input" name="address" data-name="address" bindinput="bindKeyInput"  placeholder='请输入详细的机构地址' value='{{address}}' />
         </view>
         <view class='fl_r w20 color_hong' bindtap="maps"> 获取位置</view>
         <view class='clear'></view>
@@ -59,7 +59,7 @@
       <view class='bbe list clear'>
         <view class='fl_l w30'>机构电话：</view>
         <view class='fl_l w40'>
-          <input class="text_input" name="tel" placeholder='请输入座机号或手机号' value='{{tels}}' />
+          <input class="text_input" name="tel" data-name="tel" bindinput="bindKeyInput" placeholder='请输入座机号或手机号' value='{{tel}}' />
         </view>
         <view class='fl_r w30'>
           <button class='pop_btn font_12' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手机号</button>
@@ -69,7 +69,7 @@
       <view class='bbe list clear'>
         <view class='fl_l w30'>联系人：</view>
         <view class='fl_r w70'>
-          <input class="text_input" name="linkname" placeholder='请输入联系人' />
+          <input class="text_input" name="linkname" data-name="linkname" value="{{linkname}}" bindinput="bindKeyInput" placeholder='请输入联系人' />
         </view>
         <view class='clear'></view>
       </view>
@@ -77,9 +77,9 @@
         <view class='fl_l w30'>机构业务：</view>
         <view class='fl_l w30' style="color:#dfdfdf">(最多选4个)</view>
         <view class='fl_r w70'>
-          <checkbox-group bindchange='checkboxChange'>
+          <checkbox-group bindchange='checkboxChange' name="boxName" >
             <label class="checkbox w50 fl_l" wx:for="{{category_list}}">
-              <checkbox value="{{item.id}}" />
+              <checkbox value="{{item.id}}" checked="{{item.checked}}"/>
               <text class='txt'>{{item.name}}</text>
             </label>
           </checkbox-group>
@@ -89,7 +89,7 @@
       <view class='list' style='padding-top:5px;'>
         <view>机构介绍：</view>
         <view class='bbe bte bre ble' style='margin:10px 0;'>
-          <textarea placeholder="在文本框中输入内容" name='introduce' style='height:100px;' />
+          <textarea placeholder="在文本框中输入内容" name='introduce' data-name="introduce" bindinput="bindKeyInput" style='height:100px;' value="{{introduce}}"/>
         </view>
       </view>
       <view class='list' style='padding-top:15px;'>
@@ -109,6 +109,6 @@
   </view>
 
   <view class='widt fotter tc color_hui'>
-    <image src='../../images/tel.png'></image>客服热线：0512-87313378
+    <image src='../../images/tel.png'></image>客服热线：4006-985-017
   </view>
 </view>

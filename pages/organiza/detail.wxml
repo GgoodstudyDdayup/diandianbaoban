@@ -137,12 +137,10 @@
     </view>
 
     <view class='widt fotter tc color_hui'>
-      <image src='../../images/tel.png' mode="aspectFill"></image>客服热线：0512-87313378
+      <image src='../../images/tel.png' mode="aspectFill"></image>客服热线：4006-985-017
     </view>
-
     <view class='dibu'>
       <view class=' tc font_14 color_bai bg_ls' bindtap='link' data-link='addpj?id={{detail.id}}'>我要评价</view>
     </view>
-
   </view>
 </view>

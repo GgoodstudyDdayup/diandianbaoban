@@ -68,7 +68,7 @@
 		<view class='cont_cont'>{{detail.detail}}</view>
 	</view>
 	<view class='widt fotter tc color_hui'>
-		<image src='../../images/tel.png'></image>客服热线：0512-87313378
+		<image src='../../images/tel.png'></image>客服热线：4006-985-017
 	</view>
 	<view wx:for="{{imgList}}" style="margin:0 auto;width:90%;margin-bottom:30rpx">
 		<image style="width:100%" src="{{item}}" mode="aspectFill"></image>
