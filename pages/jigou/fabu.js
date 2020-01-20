@@ -63,7 +63,6 @@ Page({
         }
       }
     })
-    console.log(e)
   },
   dels: function(a) {
     var dd = a.currentTarget.dataset.tu + ',';
@@ -71,7 +70,6 @@ Page({
     var a = that.data.suoluotu + ',';
     var str1 = a.replace(dd, '');
     var show_imges = str1.substring(0, str1.length - 1);
-    console.log(show_imges)
     that.setData({
       xianshi: show_imges.split(','),
       suoluotu: show_imges
@@ -89,7 +87,6 @@ Page({
     that.setData({
       is_audition: e.detail.value
     })
-    console.log(that.data.is_audition);
   },
   formSubmit: function(e) {
     var that = this;
@@ -164,12 +161,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          console.log(that.data.is_audition);
-          console.log(names);
-          console.log(that.data.cateid1);
-          console.log(that.data.cateid2);
-          console.log(that.data.organization_id);
-          console.log(res.data.msg);
           if (res.data.code == 1) {
             wx.showToast({
               title: `${res.data.msg}`,
@@ -241,17 +232,12 @@ Page({
             "parent_id": that.data.pid
           },
           success: function(res) {
-            console.log(res)
             var classList = res.data.data.category_list;
             let classArr = []
             classList.forEach(item => {
-              console.log(item.name)
               classArr.push(item.name)
             })
-            console.log(classArr)
-            console.log(classList)
             var xiaoquArr = that.data.xiaoquArr;
-            console.log(xiaoquArr)
             that.setData({
               multiArray: [xiaoquArr, classArr],
               classArr,
@@ -264,7 +250,6 @@ Page({
   },
   bindMultiPickerColumnChange: function(e) {
     //e.detail.column 改变的数组下标列, e.detail.value 改变对应列的值
-    console.log(e);
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
@@ -290,7 +275,6 @@ Page({
     var xiaoquList = this.data.xiaoquList;
     var classList = this.data.classList;
     var select_key = e.detail.value[1];　　
-    console.log(xiaoquList, classList)
     that.setData({
       multiIndex: e.detail.value,
       category1: xiaoquList[that.data.multiIndex[0]]['name'],
@@ -298,7 +282,6 @@ Page({
       cateid1: classList[select_key]['parent_id'],
       cateid2: classList[select_key]['id']
     })
-    console.log(that.data.cateid1);
   },
   changeAvatar: function(e) {
     var that = this
@@ -365,7 +348,6 @@ Page({
           success: function(res) {
 
             var pic = JSON.parse(res.data);
-            console.log(pic)
             // if (pic.code == 1) {
             //   j++;
             //   wx.showToast({
@@ -393,7 +375,6 @@ Page({
           // }
         })
         // }
-        console.log(tupian);
       }
     })
   },

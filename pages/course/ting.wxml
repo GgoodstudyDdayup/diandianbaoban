@@ -3,7 +3,7 @@
   </view>
   <view class='bg_bs font_16 w30 tc sttitle'>申请试听</view>
   <view class='widt clear'>
-    <view class='stimage'><image src='{{detail.banner}}'></image></view>
+    <view class='stimage'><image src='{{detail.banner}}' mode="aspectFit"></image></view>
     <view class='font_16 tc' style='padding-bottom:20px;'>{{detail.course_name}}</view>
   </view>
   <view class='height_10 bg_hs'></view>

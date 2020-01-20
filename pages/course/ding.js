@@ -54,7 +54,6 @@ Page({
   //   })
   // },
   formSubmit: function(e) {
-    console.log(e)
     var that = this;
     var flag = true;
     var sqr = e.detail.value.names;
@@ -95,9 +94,6 @@ Page({
             'Content-Type': 'application/x-www-form-urlencoded'
           },
           success: function(res) {
-            console.log(res)
-            console.log(res.data.msg);
-            console.log(app.d.userID);
             if (res.data.code == 1) {
               wx.showToast({
                 title: '成功!',

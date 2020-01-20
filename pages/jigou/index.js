@@ -16,7 +16,6 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    console.log(app.d.userID);
     wx.showLoading({
       title: '玩命加载中',
     })

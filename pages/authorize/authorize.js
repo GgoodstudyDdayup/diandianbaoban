@@ -14,7 +14,6 @@ Page({
             success: function (res) {
               //从数据库获取用户信息
               that.queryUsreInfo();
-              console.log(app.d.userID);
               //用户已经授权过
               wx.switchTab({
                 url: '/pages/user/index'
@@ -27,7 +26,6 @@ Page({
   },
 
   bindGetUserInfo: function (e) {
-    console.log(e)
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
       var that = this;
@@ -95,13 +93,11 @@ Page({
           app.d.userID = res.data.data.users_model.id;
           wx.setStorageSync('userID', res.data.data.users_model.id)
           //授权成功后，跳转进入小程序首页
-          console.log(app.d.userID);
           wx.switchTab({
             url: '/pages/user/index'
           })
           wx.setStorageSync('userID', res.data.data.users_model.id)
           console.log(wx.getStorageSync('userID'))
-          console.log(app.d.userID);
         }
       },
       fail: function (e) {

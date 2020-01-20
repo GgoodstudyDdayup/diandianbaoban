@@ -15,8 +15,6 @@ Page({
   },
   formSubmit: function (e) {
     var that = this;
-    console.log(that.data.organization_id);
-    console.log(that.data.suoluotu);
     var xxqs='';
     if (that.data.show_imges){
       xxqs = that.data.show_imges + ',' + that.data.suoluotu;
@@ -34,7 +32,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data.msg);
         wx.navigateTo({
           url: 'xxgl?id=' + that.data.organization_id
         })
@@ -130,7 +127,6 @@ Page({
             }
           })
         } 
-        console.log(tupian);
       }
     })
   }

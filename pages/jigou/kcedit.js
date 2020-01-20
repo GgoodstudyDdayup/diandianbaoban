@@ -68,7 +68,6 @@ Page({
         }
       }
     })
-    console.log(e)
   },
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -81,7 +80,6 @@ Page({
     that.setData({
       is_audition: e.detail.value
     })
-    console.log(that.data.is_audition);
   },
   formSubmit: function(e) {
     var that = this;
@@ -160,12 +158,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          console.log(that.data.is_audition);
-          console.log(names);
-          console.log(that.data.cateid1);
-          console.log(that.data.cateid2);
-          console.log(that.data.organization_id);
-          console.log(res.data.msg);
           if (res.data.code == 1) {
             wx.showToast({
               title: `${res.data.msg}`,
@@ -203,7 +195,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        console.log(res)
         let csslightList = that.data.csslightList
         let agelist = res.data.data.course_age_list
         let list = agelist.map(item => {
@@ -242,7 +233,6 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function(res) {
-        console.log(res)
         var xiaoquList = res.data.data.category_list;
         var xiaoquArr = xiaoquList.map(item => {　　　　 // 此方法将省名称区分到一个新数组
           return item.name;
@@ -297,7 +287,6 @@ Page({
   },
   bindMultiPickerColumnChange: function(e) {
     //e.detail.column 改变的数组下标列, e.detail.value 改变对应列的值
-    console.log(e);
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
@@ -331,7 +320,6 @@ Page({
       cateid1: classList[select_key]['parent_id'],
       cateid2: classList[select_key]['id']
     })
-    console.log(that.data.cateid1);
   },
   changeAvatar: function(e) {
     var that = this
@@ -398,7 +386,6 @@ Page({
           success: function(res) {
 
             var pic = JSON.parse(res.data);
-            console.log(pic)
             // if (pic.code == 1) {
             //   j++;
             //   wx.showToast({
@@ -426,7 +413,6 @@ Page({
           // }
         })
         // }
-        console.log(tupian);
       }
     })
   },

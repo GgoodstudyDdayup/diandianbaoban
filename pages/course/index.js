@@ -64,7 +64,6 @@ Page({
     var that = this;
     wx.chooseLocation({
       success: function (res) {
-        console.log(res)
         app.globalData.location = {
           latitude: res.latitude,
           longitude: res.longitude
@@ -72,7 +71,6 @@ Page({
         that.setData({
           current_address: res.address
         })
-        console.log(that.data.current_address)
       }
     });
   },

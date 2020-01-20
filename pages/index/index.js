@@ -13,13 +13,11 @@ Page({
     cityname: ''
   },
   onShareAppMessage: function(e) {
-    console.log(e)
     // let users = wx.getStorageSync('user');
     return {
       title: '点点报班',
       path: `/pages/index/index?recommendid=${app.globalData.userID}`,
       success: function(res) {
-        console.log(111)
       }
     }
   },
@@ -36,7 +34,6 @@ Page({
     });
   },
   onLoad: function(e) {
-    console.log(e)
     if (e.recommendid){
       app.globalData.recommendid = e.recommendid
       
@@ -52,7 +49,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        console.log(res)
         wx.getLocation({
           type: 'wgs84',
           success(data) {
@@ -66,8 +62,6 @@ Page({
               item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
               item.shuoming = item.category_str.split(",");
             })
-            console.log(app.globalData.location.latitude);
-            console.log(app.globalData.location.longitude)
             that.setData({
               banner: indexdata.banner_model,
               nav: indexdata.category_list,
@@ -78,7 +72,6 @@ Page({
             });
           }
         })
-        console.log(res)
         //endInitDatad
       },
       fail: function(e) {
@@ -103,7 +96,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          // console.log(res);
           var opencity = res.data.data;
           if (opencity.is_open) {
             app.d.province_id = opencity.city_id;
@@ -126,12 +118,9 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          console.log(res)
           if (res.data.code == 1) {
-            console.log(res.data.code);
             app.globalData.userID = res.data.data.users_model.id;
           }
-          console.log(app.globalData.userID);
         },
       });
     })
@@ -198,7 +187,6 @@ Page({
   },
   bindMultiPickerColumnChange: function(e) {
     //e.detail.column 改变的数组下标列, e.detail.value 改变对应列的值
-    console.log(e);
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,

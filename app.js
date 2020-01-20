@@ -12,9 +12,7 @@ App({
     return new Promise(function(resolve, reject) {
       wx.login({
         success: function(res) {
-          console.log(res)
           var code = res.code;
-          console.log(code);
           wx.request({
             url: that.d.hostUrl + '/api/miniprogram/login',
             data: {
@@ -26,11 +24,9 @@ App({
             },
             success: function(ress) {
               var data = ress.data;
-              console.log(ress);
               if (data.code == 1) {
                 that.globalData.sessionId = data.data.session_key;
                 that.globalData.openid = data.data.openid;
-                console.log(that.globalData.openid);
                 //promise机制放回成功数据
                 resolve(ress.data);
               }
@@ -54,7 +50,6 @@ App({
           }
           var qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + latitude + ',' +
             longitude + "&key=6EABZ-VEIK6-65DSA-M24UK-OFTS6-BLFQ3" + "&get_poi=1";
-          console.log(qqMapApi);
           wx.request({
             url: qqMapApi,
             data: {},
@@ -92,14 +87,12 @@ App({
     lng1 = Number(lng1) || 0;
     lat2 = Number(lat2) || 0;
     lng2 = Number(lng2) || 0;
-    console.log(lat1, lat2, lng1, lng2)
     var rad1 = lat1 * Math.PI / 180.0;
     var rad2 = lat2 * Math.PI / 180.0;
     var a = rad1 - rad2;
     var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
     var distance = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)));
     distance = distance * 6378.137; //地球半径
-    console.log(distance)
     if (distance > 1) {
       distance = Math.floor(Math.round(distance * 10000) / 10000) + 'km'
     } else {

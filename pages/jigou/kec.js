@@ -32,7 +32,6 @@ Page({
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             success: function(res) {
-              console.log(res.data.msg);
               if (res.data.code == 1) {
                 wx.showToast({
                   title: '删除成功',
@@ -60,7 +59,6 @@ Page({
       str: String(e.detail.value.keyword),
       course_list: []
     })
-    console.log(that.data.str);
     this.getdata();
   },
   getdata: function() {
@@ -120,8 +118,6 @@ Page({
     var that = this;
     var totalpage = parseInt((parseInt(that.data.total_count) + that.data.page_size - 1) / that.data.page_size);
     var curpage = that.data.page + 1;
-    console.log(totalpage);
-    console.log(totalpage);
     if (that.data.page >= totalpage) {
       wx.showToast({
         title: '已加载全部数据',

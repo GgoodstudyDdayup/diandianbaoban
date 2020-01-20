@@ -11,11 +11,9 @@ Page({
   },
   onLoad: function() {
     var that = this;
-    console.log(app.d.userID);
     wx.showLoading({
       title: '玩命加载中',
     })
-    console.log(app.d.userID)
     if (wx.getStorageSync('userID') == 0) {
       wx.redirectTo({
         url: '../authorize/authorize'
@@ -31,7 +29,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          console.log(res)
           if (res.data.msg == '该会员不存在') {
             wx.hideLoading();
             wx.navigateTo({
@@ -43,7 +40,6 @@ Page({
             that.setData({
               detail: res.data.data.users_model
             });
-            console.log(app.d.userID)
             //endInitDatad
             wx.hideLoading();
           }

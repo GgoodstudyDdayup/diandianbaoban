@@ -18,7 +18,6 @@ Page({
     this.setData({
       str: String(e.detail.value.keyword),
     })
-    console.log(that.data.str);
     this.getdata();
   },
   getdata:function(){
@@ -38,7 +37,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res)
         if (res.data.code == 1 && res.data.data.course_list.length > 0) { 
           var listdata = res.data.data.course_list;
             var newsArr=[];
@@ -47,7 +45,6 @@ Page({
             }else{
               newsArr = that.data.course_list;
             }
-            console.log(newsArr);
             for (var i = 0; i < listdata.length; i++) {
               newsArr.push(listdata[i])
             }
@@ -91,8 +88,6 @@ Page({
     var that = this;
     var totalpage = parseInt((parseInt(that.data.total_count) + that.data.page_size - 1) / that.data.page_size);
     var curpage = that.data.page + 1;
-    console.log(totalpage);
-    console.log(totalpage);
     if (that.data.page >= totalpage) {
       wx.showToast({
         title: '已加载全部数据',

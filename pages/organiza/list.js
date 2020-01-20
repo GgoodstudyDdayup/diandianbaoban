@@ -70,8 +70,6 @@ Page({
         qyMask: false
       })
     }
-    console.log(that.data.top_category);
-    console.log(that.data.second_category);
     that.getdata();
   },
   bb: function () {
@@ -155,7 +153,6 @@ Page({
       district_id: 0,
       sort: 1
     })
-    console.log(that.data.str);
     this.getdata();
   },
   getdata:function(){
@@ -180,9 +177,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res)
-        console.log(app.globalData.location.latitude)
-        console.log(app.globalData.location.longitude)
         if (res.data.data.total_count > 0 ) { 
           var listdata = res.data.data.organization_list;
           var newsArr = [];
@@ -304,6 +298,12 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        res.data.district.unshift({
+          district: "附近",
+          district_id: "0",
+          father: "0",
+          rid: "0",
+        })
         that.setData({
           district_list: res.data.district
         })
@@ -315,8 +315,6 @@ Page({
     var that = this;
     var totalpage = parseInt((parseInt(that.data.total_count) + that.data.page_size - 1) / that.data.page_size);
     var curpage = that.data.page + 1;
-    console.log(totalpage);
-    console.log(totalpage);
     if (that.data.page >= totalpage) {
       wx.showToast({
         title: '已加载全部数据',

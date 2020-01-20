@@ -44,10 +44,8 @@ Page({
         xieyi: 0
       })
     }
-    console.log(that.data.xieyi);
   },
   checkboxChange(e) {
-    console.log(e)
     var that = this;
     that.setData({
       jigou: e.detail.value,
@@ -117,9 +115,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
-          console.log(that.data.logo);
-          console.log(res.data.msg);
-          console.log(that.data.jigou);
           if (res.data.code == 1) {
             wx.showToast({
               title: `${res.data.msg}`,
@@ -138,18 +133,17 @@ Page({
       })
     }
   },
-
-
   onLoad: function (options) {
     var that = this;
+    console.log(wx.getStorageSync('outData'))
     if (wx.getStorageSync('outData')) {
       that.setData({
         linkname: wx.getStorageSync('outData').linkname,
         banner: wx.getStorageSync('outData').banner,
         logo: wx.getStorageSync('outData').logo,
         show_imges:wx.getStorageSync('outData').show_imges,
-        address: wx.getStorageSync('outData').address,
-        tel: wx.getStorageSync('outData').tel,
+        current_address: wx.getStorageSync('outData').current_address,
+        tels: wx.getStorageSync('outData').tel,
         name:wx.getStorageSync('outData').name,
         introduce:wx.getStorageSync('outData').introduce,
       })
@@ -212,7 +206,6 @@ Page({
         })
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        console.log(tempFilePaths[0])
         //这里是上传操作
         wx.uploadFile({
           url: app.d.hostUrl + '/api/upload/upload_single_img',
@@ -226,7 +219,6 @@ Page({
             'session_token': wx.getStorageSync('session_token')
           },
           success: function (res) {
-            console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
               that.setData({
@@ -264,7 +256,6 @@ Page({
         })
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        console.log(tempFilePaths)
         //这里是上传操作
         wx.uploadFile({
           url: app.d.hostUrl + '/api/upload/upload_single_img',
@@ -278,7 +269,6 @@ Page({
             'session_token': wx.getStorageSync('session_token')
           },
           success: function (res) {
-            console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
               that.setData({
@@ -329,7 +319,6 @@ Page({
             'session_token': wx.getStorageSync('session_token')
           },
           success: function (res) {
-            console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
               that.setData({
@@ -379,7 +368,6 @@ Page({
         }
       }
     })
-    console.log(e)
   },
   bindKeyInput: function (e) {
     console.log(e)
@@ -394,14 +382,13 @@ Page({
       banner: _that.banner || '',
       logo: _that.logo || '',
       show_imges: _that.show_imges || '',
-      address: _that.address || '',
-      tel: _that.tel || '',
+      current_address: _that.current_address || '',
+      tel: _that.tels || '',
       name: _that.name || '',
       linkname: _that.linkname || '',
       introduce: _that.introduce || ''
     }
+    console.log(params)
     wx.setStorageSync('outData', params)
-    console.log(wx.getStorageSync('outData'))
   }
-
 })

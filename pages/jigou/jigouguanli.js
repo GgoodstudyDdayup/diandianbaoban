@@ -20,7 +20,6 @@ Page({
     var that = this;
     wx.chooseLocation({
       success: function(res) {
-        console.log(res)
         that.setData({
           current_address: res.address,
           location_x: res.longitude,
@@ -46,14 +45,12 @@ Page({
         xieyi: 0
       })
     }
-    console.log(that.data.xieyi);
   },
   checkboxChange(e) {
     var that = this;
     that.setData({
       jigou: e.detail.value
     })
-    console.log(that.data.jigou);
   },
   getPhoneNumber(e) {
     var that = this;
@@ -76,7 +73,6 @@ Page({
     })
   },
   formSubmit: function(e) {
-    console.log(e)
     var that = this;
     var flag = true;
     var sqr = e.detail.value.names;
@@ -91,7 +87,6 @@ Page({
     let banner = that.data.f1_img.banner || that.data.category_list.banner
     let show_imges = that.data.f1_img.show_imges || that.data.category_list.show_imges
     show_imges = show_imges.join(',')
-    // console.log(logo, banner, show_img)
     if (sqr == '' || tel == '' || add == '' || linkname == '' || introduce == '') {
       wx.showModal({
         title: '提示',
@@ -118,10 +113,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          console.log(res)
-          console.log(that.data.logo);
-          console.log(res.data.msg);
-          console.log(that.data.jigou);
           if (res.data.code == 1) {
             wx.showToast({
               title: `${res.data.msg}`,
@@ -153,7 +144,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        console.log(res)
         let f1_img = that.data.f1_img
         f1_img.show_imges = res.data.data.organization_model.show_imges.split(',')
         f1_img.banner = res.data.data.organization_model.banner
@@ -162,13 +152,11 @@ Page({
           category_list: res.data.data.organization_model,
           f1_img
         })
-        console.log(f1_img.show_imges)
       }
     })
     wx.hideLoading();
   },
   del(e) {
-    console.log(e)
     let that = this
     let category_list = that.data.category_list
     let f1_img = that.data.f1_img
@@ -179,8 +167,6 @@ Page({
         if (res.confirm) {
           if (e.currentTarget.dataset.logo == 'show_imges') {
             let i = e.currentTarget.dataset.index
-            console.log(i)
-            console.log(f1_img.show_imges)
             f1_img.show_imges.splice(i, 1)
             that.setData({
               f1_img
@@ -201,7 +187,6 @@ Page({
         }
       }
     })
-    console.log(e)
   },
   changeAvatar1: function(e) {
     var that = this
@@ -210,7 +195,6 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        console.log(res)
         wx.showToast({
           title: '正在上传...',
           icon: 'loading',
@@ -237,7 +221,6 @@ Page({
             'session_token': wx.getStorageSync('session_token')
           },
           success: function(res) {
-            console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
               let banner = that.data.banner
@@ -289,7 +272,6 @@ Page({
             'session_token': wx.getStorageSync('session_token')
           },
           success: function(res) {
-            console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
               let logo = that.data.logo
@@ -324,12 +306,10 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         let f1_img = that.data.f1_img
-        console.log(res.tempFilePaths[0])
         // f1_img.show_imges.push(res.tempFilePaths[0])
         // that.setData({
         //   f1_img
         // })
-        // console.log(f1_img.show_imges)
         //这里是上传操作
         wx.uploadFile({
           url: app.d.hostUrl + '/api/upload/upload_single_img',

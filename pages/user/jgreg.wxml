@@ -51,7 +51,7 @@
       <view class='bbe list clear'>
         <view class='fl_l w30'>详细地址：</view>
         <view class='fl_l w50'>
-          <input class="text_input" name="address" data-name="address" bindinput="bindKeyInput"  placeholder='请输入详细的机构地址' value='{{address}}' />
+          <input class="text_input" name="address" data-name="current_address" bindinput="bindKeyInput"  placeholder='请输入详细的机构地址' value='{{current_address}}' />
         </view>
         <view class='fl_r w20 color_hong' bindtap="maps"> 获取位置</view>
         <view class='clear'></view>
@@ -59,7 +59,7 @@
       <view class='bbe list clear'>
         <view class='fl_l w30'>机构电话：</view>
         <view class='fl_l w40'>
-          <input class="text_input" name="tel" data-name="tel" bindinput="bindKeyInput" placeholder='请输入座机号或手机号' value='{{tel}}' />
+          <input class="text_input" name="tel" data-name="tel" bindinput="bindKeyInput" placeholder='请输入座机号或手机号' value='{{tels}}' />
         </view>
         <view class='fl_r w30'>
           <button class='pop_btn font_12' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手机号</button>

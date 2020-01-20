@@ -20,3 +20,34 @@
 .dibu{ padding-top: 20px; height: 40px; line-height: 40px;position: fixed;
 bottom: 0; width: 100%;}
 .cs_button{ background-color: #0078ff; height: 40px; border: none;}
+
+  .mask {
+    width: 90%;
+    height: 1000rpx;
+    position: fixed;
+    top: 30rpx;
+    left: 50%;
+    margin-left: -45%;
+    z-index: 9;
+  }
+  
+  .m-mask {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 1200px;
+    background: rgba(0, 0, 0, .6);
+  
+  }
+  .m-mskbtn{
+    position: fixed;
+    top: 1030rpx;
+    left: 50%;
+    margin-left: -45%;
+    margin-top: 40rpx;
+    color: #333;
+    background: #fff;
+    text-align: center;
+    line-height: 70rpx;
+    width: 90%;
+  }

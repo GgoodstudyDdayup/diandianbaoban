@@ -50,7 +50,6 @@ Page({
     })
   },
   formSubmit: function(e) {
-    console.log(e)
     var that = this;
     var flag = true;
     var sqr = e.detail.value.names;
@@ -81,7 +80,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          console.log(res.data.msg);
           wx.showToast({
             title: `${res.data.msg}`,
           })

@@ -38,7 +38,6 @@ Page({
         }
       }
     })
-    console.log(e)
   },
   formSubmit: function(e) {
     var that = this;
@@ -69,7 +68,6 @@ Page({
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         success: function(res) {
-          console.log(res.data.msg);
           if (res.data.code == 1) {
             wx.showToast({
               title: `${res.data.msg}`,
@@ -104,7 +102,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function(res) {
-        console.log(res.data.data.teacher_model)
         that.setData({
           detail: res.data.data.teacher_model,
           logo: res.data.data.teacher_model.image
@@ -142,7 +139,6 @@ Page({
             'session_token': wx.getStorageSync('session_token')
           },
           success: function(res) {
-            console.log(res.data);
             var pic = JSON.parse(res.data);
             if (pic.code == 1) {
               that.setData({

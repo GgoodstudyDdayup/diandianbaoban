@@ -22,7 +22,7 @@ Page({
       name: '15-18岁'
     }]
   },
-  link: function(a) {
+  link: function (a) {
     var t = a.currentTarget.dataset.link;
     wx.navigateTo({
       url: t
@@ -30,41 +30,48 @@ Page({
   },
   getPhoneNumber(e) {
     var that = this;
-    wx.request({
-      url: app.d.hostUrl + '/api/miniprogram/ecrypt_str',
-      method: 'post',
-      data: {
-        iv: e.detail.iv,
-        sessionKey: app.globalData.sessionId,
-        data_str: e.detail.encryptedData,
-      },
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      success: function(res) {
-        console.log(res)
-        that.setData({
-          tels: res.data.phoneNumber
-        })
-        wx.request({
-          url: app.d.hostUrl + '/api/miniprogram/get_phone',
-          method: 'post',
-          data: {
-            user_id: wx.getStorageSync('userID'),
-            mobile: that.data.tels,
-          },
-          header: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          success: function(res) {
-            console.log(res)
-            
-          }
-        })
-      }
-    })
+    if (e.detail.errMsg != "getPhoneNumber:fail user deny") {
+      wx.request({
+        url: app.d.hostUrl + '/api/miniprogram/ecrypt_str',
+        method: 'post',
+        data: {
+          iv: e.detail.iv,
+          sessionKey: app.globalData.sessionId,
+          data_str: e.detail.encryptedData,
+        },
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          that.setData({
+            tels: res.data.phoneNumber
+          })
+          wx.request({
+            url: app.d.hostUrl + '/api/miniprogram/get_phone',
+            method: 'post',
+            data: {
+              user_id: wx.getStorageSync('userID'),
+              mobile: that.data.tels,
+            },
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+              console.log(res)
+
+            }
+          })
+        },
+        fail: function () {
+          console.log(222)
+        }
+      })
+    }else{
+      return false
+    }
+
   },
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     var that = this;
     var flag = true;
     var sqr = e.detail.value.names;
@@ -104,8 +111,7 @@ Page({
           header: {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-          success: function(res) {
-            console.log(res.data.msg);
+          success: function (res) {
             if (res.data.code == 1) {
               wx.showToast({
                 title: '成功!',
@@ -124,7 +130,7 @@ Page({
       }
     }
   },
-  parameterTap: function(e) { //e是获取e.currentTarget.dataset.id所以是必备的，跟前端的data-id获取的方式差不多
+  parameterTap: function (e) { //e是获取e.currentTarget.dataset.id所以是必备的，跟前端的data-id获取的方式差不多
     var that = this
     var this_checked = e.currentTarget.dataset.id
     var parameterList = this.data.parameter //获取Json数组
@@ -139,12 +145,12 @@ Page({
       parameter: parameterList
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     this.setData({
       parameter: this.data.parameter,
     })
-    if (wx.getStorageSync('userID')==0) {
+    if (wx.getStorageSync('userID') == 0) {
       wx.redirectTo({
         url: '../authorize/authorize'
       });
@@ -158,7 +164,7 @@ Page({
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        success: function(res) {
+        success: function (res) {
           that.setData({
             detail: res.data.data.course_model
           })

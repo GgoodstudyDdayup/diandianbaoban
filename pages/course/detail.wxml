@@ -5,7 +5,9 @@
 
 	<view class='widt'>
 		<view class='title bbe'>
-			<view class='font_18'>{{detail.course_name}}</view>
+			<view class='font_18'>{{detail.course_name}}
+			<!-- <view class='fl_r color_hui' bindtap='share' style="font-size:29rpx;width: 120rpx;line-height:60rpx;background: #ff6634;color: #fff;text-align: center;">分享</view> -->
+			</view>
 			<view class='font_12'>{{detail.subtitle}}</view>
 		</view>
 		<view class='shit '>
@@ -77,4 +79,10 @@
 		<view class='w50 fl_l tc font_14 color_bai bg_ls' bindtap='link2' data-link='ding?id={{detail.id}}'>立即订购</view>
 		<view class='w50 fl_l tc font_14 color_bai bg_cs' bindtap='link' data-link='ting?id={{detail.id}}'>免费试听1节课</view>
 	</view>
+</view>
+<view class="m-mask" bindtap="maskdisappear" wx:if="{{mask}}">
+	<view class="mask">
+		<image style="width:100%;height:100%" src="{{img}}"></image>
+	</view>
+  <view class="m-mskbtn" bindtap="saveImg">保存图片</view>
 </view>

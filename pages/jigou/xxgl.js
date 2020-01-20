@@ -16,7 +16,6 @@ Page({
     var str = that.data.detail + ',';
     var str1 = str.replace(a, '');
     var show_images = str1.substring(0,str1.length-1);
-    console.log(show_images);
     if (!show_images) { show_images='';}
     wx.showModal({
       title: '提示',
@@ -34,7 +33,6 @@ Page({
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             success: function (res) {
-              console.log(res.data.msg);
               wx.showToast({
                 title: '删除成功',
                 icon: 'success',
@@ -67,7 +65,6 @@ Page({
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data.data.organization_model.show_imges);
         that.setData({
           organization_id: res.data.data.organization_model.id,
         })
