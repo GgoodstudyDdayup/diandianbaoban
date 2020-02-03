@@ -12,31 +12,31 @@ Page({
     current_city: '苏州市',
     cityname: ''
   },
-  onShareAppMessage: function(e) {
+  onShareAppMessage: function (e) {
     // let users = wx.getStorageSync('user');
     return {
       title: '点点报班',
       path: `/pages/index/index?recommendid=${app.globalData.userID}`,
-      success: function(res) {
+      success: function (res) {
       }
     }
   },
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     var that = this;
     wx.navigateTo({
       url: '../search/o_search?str=' + String(e.detail.value.keyword)
     });
   },
-  link: function(a) {
+  link: function (a) {
     var t = a.currentTarget.dataset.link;
     wx.navigateTo({
       url: t
     });
   },
-  onLoad: function(e) {
-    if (e.recommendid){
+  onLoad: function (e) {
+    if (e.recommendid) {
       app.globalData.recommendid = e.recommendid
-      
+
     }
     var that = this;
     wx.showLoading({
@@ -48,13 +48,13 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      success: function(res) {
+      success: function (res) {
+        var indexdata = res.data.data;
         wx.getLocation({
           type: 'wgs84',
           success(data) {
             app.globalData.location.latitude = data.latitude
             app.globalData.location.longitude = data.longitude
-            var indexdata = res.data.data;
             indexdata.hot_course_list.forEach((item) => {
               item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
             })
@@ -62,19 +62,19 @@ Page({
               item.juli = app.getDistance(app.globalData.location.latitude, app.globalData.location.longitude, item.location_y, item.location_x);
               item.shuoming = item.category_str.split(",");
             })
-            that.setData({
-              banner: indexdata.banner_model,
-              nav: indexdata.category_list,
-              hot_course_list: indexdata.hot_course_list,
-              near_course_list: indexdata.near_course_list,
-              near_organization_list: indexdata.near_organization_list,
-              acticle: indexdata.article_list,
-            });
           }
         })
+        that.setData({
+          banner: indexdata.banner_model,
+          nav: indexdata.category_list,
+          hot_course_list: indexdata.hot_course_list,
+          near_course_list: indexdata.near_course_list,
+          near_organization_list: indexdata.near_organization_list,
+          acticle: indexdata.article_list,
+        });
         //endInitDatad
       },
-      fail: function(e) {
+      fail: function (e) {
         wx.showToast({
           title: '网络异常！',
           duration: 2000
@@ -95,7 +95,7 @@ Page({
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        success: function(res) {
+        success: function (res) {
           var opencity = res.data.data;
           if (opencity.is_open) {
             app.d.province_id = opencity.city_id;
@@ -117,7 +117,7 @@ Page({
         header: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        success: function(res) {
+        success: function (res) {
           if (res.data.code == 1) {
             app.globalData.userID = res.data.data.users_model.id;
           }
@@ -132,7 +132,7 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success: function(res) {
+      success: function (res) {
         var xiaoquList = res.data.province_list;
         var xiaoquArr = xiaoquList.map(item => {　　　　 // 此方法将省名称区分到一个新数组中
           return item.province;
@@ -168,7 +168,7 @@ Page({
           data: {
             "province_id": that.data.pid
           },
-          success: function(res) {
+          success: function (res) {
 
             var classList = res.data.city;
             var classArr = classList.map(item => {
@@ -185,7 +185,7 @@ Page({
       })
     }
   },
-  bindMultiPickerColumnChange: function(e) {
+  bindMultiPickerColumnChange: function (e) {
     //e.detail.column 改变的数组下标列, e.detail.value 改变对应列的值
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
@@ -207,7 +207,7 @@ Page({
     }
     this.setData(data);
   },
-  bindMultiPickerChange: function(e) {
+  bindMultiPickerChange: function (e) {
     var that = this;
     var classList = this.data.classList;
     var select_key = e.detail.value[1];
@@ -222,7 +222,7 @@ Page({
       data: {
 
       },
-      success: function(res) {
+      success: function (res) {
         var opencity = res.data.data.city_list;
         var arrays = opencity.map(item => {
           return item.city_id;
@@ -240,10 +240,10 @@ Page({
       }
     })
   },
-  maps: function() {
+  maps: function () {
     var that = this;
     wx.chooseLocation({
-      success: function(res) {
+      success: function (res) {
         console.log(res, "location")
         console.log(res.name)
         app.globalData.location = {
@@ -256,7 +256,7 @@ Page({
       }
     });
   },
-  tel(){
+  tel() {
     wx.makePhoneCall({
       phoneNumber: '4006-985-017' //仅为示例，并非真实的电话号码
     })
