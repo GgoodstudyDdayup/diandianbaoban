@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/yiqing/index/index",
     "pages/index/index",
     "pages/course/index",
     "pages/course/list",
@@ -35,7 +36,8 @@
     "pages/acticle/other",
     "pages/user/info",
     "pages/authorize/authorize",
-    "pages/jigou/jigouguanli"
+    "pages/jigou/jigouguanli",
+    "pages/yiqing/info/info"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,3 @@
+<!--pages/yiqing/info/info.wxml-->
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="12" markers="{{markers}}" bindmarkertap="markertap" show-location="true" show-compass="true" enable-overlooking="true" show-scale="true" style="height:{{windowHeight}}px;width: 100%">
+</map>

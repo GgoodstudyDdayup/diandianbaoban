@@ -1,0 +1,177 @@
+/* pages/yiqing/index/index.wxss */
+.m-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 110rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0.013333rem 0.093333rem 0 rgba(0, 0, 0, .1);
+  background: #fff;
+}
+
+.bottom-btn {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.bottom-btn image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.search {
+  width: 100%;
+  height: 120rpx;
+  line-height: 170rpx;
+  border-bottom: 1px solid #dfdfdf;
+  border-radius: 0rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.search-input {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.search-input-s {
+  width: 76%;
+  height: 60rpx;
+  border-radius: 30rpx;
+  border: 1px solid #dfdfdf;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  margin-left: 30rpx;
+
+}
+
+.search-input-s input {
+  margin-left: 20rpx;
+  width: 100%;
+}
+
+.search-input image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.search-input-view {
+  font-size: 24rpx;
+  background: #fff;
+  color: #333;
+  text-align: center;
+}
+
+.m-list,
+.m-list2 {
+  box-sizing: border-box;
+  padding: 30rpx 30rpx;
+  width: 100%;
+  height: 230rpx;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.m-list {
+  display: flex;
+  flex-flow: column
+}
+
+.m-list2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.m-list2 view:nth-child(1) {
+  width: 80%;
+}
+
+.list-name {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.list-city {
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  border: 1px solid #dfdfdf;
+  border-radius: 8rpx;
+  color: #6f6f6f;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 8rpx 8rpx;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.address-line {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  width: 20%;
+}
+
+.address-line view:nth-child(1) {
+  color: #333;
+  text-align: end;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.address-line view:nth-child(2) {
+  color: #1296db;
+  font-size: 24rpx;
+  font-weight: bold;
+  text-align: end;
+}
+
+.list-address {
+  font-size: 26rpx;
+}
+
+.dq {
+  width: 100%;
+  height: 60rpx;
+  font-size: 38rpx;
+  box-sizing: border-box;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.dq image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 30rpx;
+}
+
+.flex-item1 {
+  background: rgba(0, 0, 0, .6);
+  width: 55rpx;
+  height: 55rpx;
+  position: absolute;
+  top: 60rpx;
+  left: 60rpx;
+}
+
+.flex-item2 {
+  background: rgba(0, 0, 0, .6);
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  bottom: 60rpx;
+  left: 60rpx;
+}

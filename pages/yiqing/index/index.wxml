@@ -1,0 +1,66 @@
+<!--pages/yiqing/index/index.wxml-->
+<view wx:if="{{nearVar}}" style="box-sizing:boder-box;padding-bottom:100rpx">
+	<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="12" markers="{{markers}}" bindmarkertap="markertap" show-location="true" show-compass="true" enable-overlooking="true" show-scale="true" style="width: 100%; height: 620rpx;">
+		<cover-view class="flex-item1 ">
+			<cover-image src="../../../images/ditus.png"  bindtap="searchTab"></cover-image>
+		</cover-view>
+		<cover-view class="flex-item2 ">
+			<cover-image src="../../../images/dang.png"  bindtap="getAddressDetail"></cover-image>
+		</cover-view>
+	</map>
+	<view class="dq">
+		<view>当前位置</view>
+		<image src="../../../images/reset.png" bindtap="getAddressDetail"></image>
+	</view>
+	<scroll-view scroll-y="true" style="height: 1000rpx;" bindscrolltolower="lower2">
+		<view class="m-list2" wx:for="{{nearList}}" wx:key="index" bindtap="info" data-name="{{item.shop_name}}" data-longitude="{{item.location_x}}" data-latitude="{{item.location_y}}">
+			<view>
+				<view class="list-name">{{item.shop_name}}</view>
+				<view class="list-city">{{item.address}}</view>
+				<view class="list-address">{{item.detail_address}}</view>
+			</view>
+			<view class="address-line">
+				<view>{{item.distance}}km</view>
+				<view wx:if="{{index==0}}">离你最近</view>
+			</view>
+		</view>
+	</scroll-view>
+</view>
+
+
+
+<view wx:if="{{searchVar}}">
+	<view class="search">搜索</view>
+	<form bindsubmit="formSubmit">
+		<view class="search-input">
+			<view class="search-input-s">
+				<image src="../../../images/searchbtn.png"></image>
+				<input name="address"></input>
+			</view>
+			<button class="search-input-view" formType="submit">搜索</button>
+		</view>
+	</form>
+	<scroll-view scroll-y="true" style="height: 1000rpx;" bindscrolltolower="lower2" scroll-top="{{top}}">
+		<view class="m-list" wx:for="{{searchList}}" bindtap="info" data-name="{{item.shop_name}}" data-longitude="{{item.location_x}}" data-latitude="{{item.location_y}}">
+			<view class="list-name">{{item.shop_name}}</view>
+			<view class="list-city">{{item.address}}</view>
+			<view class="list-address">{{item.detail_address}}</view>
+		</view>
+	</scroll-view>
+</view>
+
+
+
+
+
+
+<view class="m-bottom">
+	<view class="bottom-btn" bindtap="nearTab">
+		<image src="{{nearVar? '../../../images/nearI.png' : '../../../images/nearO.png' }}"></image>
+		<view style="{{nearVar?'color:#1296db':'color:#333'}}">附近</view>
+	</view>
+	<view class="bottom-btn" bindtap="searchTab">
+		<image src="{{searchVar? '../../../images/searchI.png' : '../../../images/searchO.png' }}"></image>
+		<view style="{{searchVar?'color:#1296db':'color:#333'}}">查询</view>
+	</view>
+</view>
