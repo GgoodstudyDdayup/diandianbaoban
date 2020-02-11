@@ -67,7 +67,7 @@
       <block wx:for="{{course_list}}" wx:for-index="idx" wx:key="idx">
         <navigator url='detail?id={{item.id}}' class='item bbe'>
           <view class='fl_l w35' style='margin-right:5%;'>
-            <image src="{{item.banner?item.banner:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image>
+            <image lazy-load="true" src="{{item.banner?item.banner:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image>
           </view>
           <view class='fl_l w60'>
             <view class='font_16' style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">{{item.course_name}}</view>
@@ -84,7 +84,10 @@
       </block>
     </view>
   </view>
-
+<button open-type="contact" class="kefu">
+		<image src="../../images/kefu.png"></image>
+		<view>客服</view>
+	</button>
   <view class='widt fotter tc color_hui'>
     <image src='../../images/tel.png'></image>客服热线：4006-985-017
   </view>

@@ -96,7 +96,7 @@ Page({
         url: app.d.hostUrl + '/api/miniprogram/join',
         method: 'post',
         data: {
-          user_id: app.d.userID,
+          user_id: app.d.userID||app.globalData.userID,
           name: sqr,
           logo: that.data.logo,
           banner: that.data.banner,

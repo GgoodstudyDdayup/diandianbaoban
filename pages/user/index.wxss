@@ -29,3 +29,6 @@
 }
 .ors{ box-shadow:2px 2px 3px 2px #f3f3f3; height: 45px; line-height: 45px;}
 .ors .item{ height: 45px; line-height: 45px;}
+.kefu{position: fixed;right: 0;top:750rpx;width: 75rpx;height: 144rpx;display: flex;flex-wrap: wrap;padding: 0;align-items: center;justify-content: center;background: #ff6949;border-radius: 5px 0 0 5px ;}
+.kefu image{width: 60rpx;height: 55rpx;margin-top: 17rpx;}
+.kefu view{font-size: 28rpx;color: #fff;}

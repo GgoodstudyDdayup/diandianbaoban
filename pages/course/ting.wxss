@@ -12,3 +12,6 @@ height:40px;
 border-radius:20px;
 }
 .pop_btn{padding: 0 !important; margin-top: 5px!important}
+.kefu{position: fixed;right: 0;top:750rpx;width: 75rpx;height: 144rpx;display: flex;flex-wrap: wrap;padding: 0;align-items: center;justify-content: center;background: #ff6949;border-radius: 5px 0 0 5px ;}
+.kefu image{width: 60rpx;height: 55rpx;margin-top: 17rpx;}
+.kefu view{font-size: 28rpx;color: #fff;}

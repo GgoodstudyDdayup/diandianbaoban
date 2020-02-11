@@ -82,7 +82,10 @@
       </block>
     </view>
   </view>
-
+<button open-type="contact" class="kefu">
+		<image src="../../images/kefu.png"></image>
+		<view>客服</view>
+	</button>
   <view class='widt fotter tc color_hui'>
     <image src='../../images/tel.png'></image>客服热线：4006-985-017
   </view>

@@ -25,7 +25,7 @@ Page({
       data: {
         page_size: that.data.page_size,
         page: that.data.page,
-        user_id:app.d.userID,
+        user_id:app.d.userID||app.globalData.userID,
         type:that.data.type,
         sort: that.data.sort
       },

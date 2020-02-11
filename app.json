@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/yiqing/index/index",
     "pages/index/index",
     "pages/course/index",
     "pages/course/list",
@@ -37,6 +36,7 @@
     "pages/user/info",
     "pages/authorize/authorize",
     "pages/jigou/jigouguanli",
+    "pages/yiqing/index/index",
     "pages/yiqing/info/info"
   ],
   "window": {
@@ -82,5 +82,6 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": ["wxd205480df218d810"]
 }

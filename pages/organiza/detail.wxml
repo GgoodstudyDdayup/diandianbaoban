@@ -8,6 +8,9 @@
 			<view class='title'>
 				<view class='font_18'>{{detail.name}}
 					<!-- <view class='fl_r color_hui' bindtap='share' style="font-size: 29rpx;width: 120rpx;line-height: 60rpx;background: #ff6634;color: #fff;text-align: center">分享</view> -->
+					<view class='fl_r'>
+						<view class='button bg_cs color_bai' style='padding:0 5px;font-size: 30rpx;' bindtap='calltel' data-tel='4006-985-017'>点击拨打电话</view>
+					</view>
 				</view>
 				<view class='font_12' style='padding:5px 0'>
 					<!-- <block wx:for="{{aab}}" wx:for-index="idx" wx:key="idx">
@@ -22,12 +25,6 @@
 		<view class='height_10 bg_hs'></view>
 
 		<view class='widt'>
-			<view class='bbe' style='height:40px; line-height:40px; padding-top:10px;'>
-				<view class='fl_l'>{{detail.tel}}</view>
-				<view class='fl_r'>
-					<view class='button bg_cs color_bai' style='padding:0 5px;' bindtap='calltel' data-tel='{{detail.tel}}'>点击拨打电话</view>
-				</view>
-			</view>
 			<view class='address' bindtap="address">
 				<view class='fl_l w90'>
 					<text>{{detail.address}}</text> </view>
@@ -150,5 +147,9 @@
 	<view class="mask">
 		<image style="width:100%;height:100%" src="{{img}}"></image>
 	</view>
-  <view class="m-mskbtn" bindtap="saveImg">保存图片</view>
+	<view class="m-mskbtn" bindtap="saveImg">保存图片</view>
 </view>
+<button open-type="contact" class="kefu">
+		<image src="../../images/kefu.png"></image>
+		<view>客服</view>
+	</button>

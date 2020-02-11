@@ -29,11 +29,16 @@ Page({
   },
   link: function (a) {
     var t = a.currentTarget.dataset.link;
-    wx.navigateTo({
-      url: t
-    });
+    if(t){
+      wx.navigateTo({
+        url: '/'+t
+      });
+    }else{
+      return false
+    }
   },
   onLoad: function (e) {
+    
     if (e.recommendid) {
       app.globalData.recommendid = e.recommendid
 
@@ -260,7 +265,7 @@ Page({
     wx.makePhoneCall({
       phoneNumber: '4006-985-017' //仅为示例，并非真实的电话号码
     })
-  }
+  },
   // onShow: function() {
   //   this.onLoad();
   // }

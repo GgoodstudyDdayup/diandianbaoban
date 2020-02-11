@@ -1,144 +1,184 @@
 <view class="page">
-   <view class='top widt'>
-    <view class='city fl_l w30 tc color_bai'>
-      <view class='text'>
-      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange"  value="{{multiIndex}}" range="{{multiArray}}">
-　　<view class="picker fl_l">
-      {{current_city}}
-    </view>
-    <view class='icons fl_l'><image src='../../images/x_down.png' width="30"></image></view>
-</picker>
-      </view>
-    </view>
-    <view class='fl_r w70'>
-       <form bindsubmit="formSubmit">
-    <view class='search'>
-      <view class='fl_l w85'><input class="text_input" placeholder="请输入机构或者课程名称"  name="keyword" /></view>
-      <view class='fl_r w15' ><button form-type="submit" class='submits'><image src='../../images/search.png'></image></button></view>
-      
-    </view>
-    </form>
-    </view>
-   </view>
+	<view class='top widt'>
+		<view class='city fl_l w30 tc color_bai'>
+			<view class='text'>
+				<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+					　　<view class="picker fl_l">
+						{{current_city}}
+					</view>
+					<view class='icons fl_l'>
+						<image src='../../images/x_down.png' width="30"></image>
+					</view>
+				</picker>
+			</view>
+		</view>
+		<view class='fl_r w70'>
+			<form bindsubmit="formSubmit">
+				<view class='search'>
+					<view class='fl_l w85'><input class="text_input" placeholder="请输入机构或者课程名称" name="keyword" /></view>
+					<view class='fl_r w15'><button form-type="submit" class='submits'>
+							<image src='../../images/search.png'></image>
+						</button></view>
 
-    <swiper autoplay="{{autoplay}}" class="banner" duration="{{duration}}" indicatorColor="#ffffff" indicatorDots="{{indicatorDots}}" interval="{{interval}}" >
-        <swiper-item>
-            <image bindtap="link" class="slide-image" data-link="{{banner.href1}}"  src="{{banner.banner1}}" width="100%"></image>
-        </swiper-item>
-        <swiper-item>
-            <image bindtap="link" class="slide-image" data-link="{{banner.href2}}"  src="{{banner.banner2}}" ></image>
-        </swiper-item>
-        <swiper-item>
-            <image bindtap="link" class="slide-image" data-link="{{banner.href3}}"  src="{{banner.banner3}}" ></image>
-        </swiper-item>
-    </swiper>
+				</view>
+			</form>
+		</view>
+	</view>
 
-    <view class="nav widt" wx:if="{{nav}}">
-        <block wx:for="{{nav}}" wx:for-index="idx" wx:key="idx">
-            <navigator class="item" url="../course/list?top_category={{item.id}}&flname={{item.name}}" hover-class="none">
-                <image src="{{item.ico}}"></image>
-                <view>{{item.name}}</view>
-            </navigator>
-        </block>
-    </view>
+	<swiper autoplay="{{autoplay}}" class="banner" duration="{{duration}}" indicatorColor="#ffffff" indicatorDots="{{indicatorDots}}" interval="{{interval}}">
+		<swiper-item wx:if="{{banner.banner1}}">
+			<image bindtap="link" class="slide-image" data-link="{{banner.href1}}" src="{{banner.banner1}}" width="100%"></image>
+		</swiper-item>
+		<swiper-item wx:if="{{banner.banner2}}">
+			<image bindtap="link" class="slide-image" data-link="{{banner.href2}}" src="{{banner.banner2}}"></image>
+		</swiper-item>
+		<swiper-item wx:if="{{banner.banner3}}">
+			<image bindtap="link" class="slide-image" data-link="{{banner.href3}}" src="{{banner.banner3}}"></image>
+		</swiper-item>
+		<swiper-item wx:if="{{banner.banner4}}">
+			<image bindtap="link" class="slide-image" data-link="{{banner.href4}}" src="{{banner.banner4}}"></image>
+		</swiper-item>
+		<swiper-item wx:if="{{banner.banner5}}">
+			<image bindtap="link" class="slide-image" data-link="{{banner.href5}}" src="{{banner.banner5}}"></image>
+		</swiper-item>
+		<swiper-item wx:if="{{banner.other1}}">
+			<image bindtap="link" class="slide-image" data-link="{{banner.other1_href}}" src="{{banner.other1}}"></image>
+		</swiper-item>
+	</swiper>
 
-<view class='height_10 bg_hs'></view>
+	<view class="nav widt" wx:if="{{nav}}">
+		<block wx:for="{{nav}}" wx:for-index="idx" wx:key="idx">
+			<view>
+				<navigator class="item" url="../course/list?top_category={{item.id}}&flname={{item.name}}" hover-class="none">
+					<image mode="scaleToFill" src="{{item.ico}}"></image>
+					<view>{{item.name}}</view>
+				</navigator>
+			</view>
+		</block>
+	</view>
+	<view class='height_10 bg_hs'></view>
+	<view class='widt'>
+		<navigator class="item" style="height:200rpx" target="miniProgram" open-type="navigate" app-id="wxd205480df218d810" path="pages/index/index" hover-class="none">
+			<image style="width:100%;height:200rpx" src='../../images/jiazhangshequ.png'></image>
+		</navigator>
+		<view class='height_10 bg_hs'></view>
+		<view class='address'>
+			<view class='fl_l'>
+				<image src='../../images/contact02.png'></image>
+			</view>
+			<view class='fl_l'><text style="width: 200px;display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{current_address}}</text> </view>
+			<view class='fl_r color_hong' bindtap="maps">切换位置</view>
+		</view>
+	</view>
 
-<view class='widt'>
-  <view class='address'>
-    <view class='fl_l'><image src='../../images/contact02.png'></image> </view>
-    <view class='fl_l'><text style="width: 200px;display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{current_address}}</text> </view>
-    <view class='fl_r color_hong' bindtap="maps">切换位置</view>
-  </view>
-</view>
+	<view class='widt ages clear'>
+		<view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=0'>全部</view>
+		<view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=1'>0-3岁</view>
+		<view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=2'>3-6岁</view>
+		<view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=3'>6-12岁</view>
+		<view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=4'>12-15岁</view>
+		<view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=5'>15-18岁</view>
+	</view>
 
-<view class='widt ages clear'>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=0'>全部</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=1'>0-3岁</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=2'>3-6岁</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=3'>6-12岁</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=4'>12-15岁</view>
-  <view class='button bg_bts tc font_12 fl_l item' bindtap='link' data-link='../course/list?age_id=5'>15-18岁</view>
-</view>
+	<block wx:if='{{acticle}}'>
+		<view class='height_10 bg_hs'></view>
+		<block wx:for="{{acticle}}" wx:for-index="idx" wx:key="idx">
+			<view class='widt clear acticle'>
+				<navigator url='../acticle/detail?id={{item.id}}' hover-class="none">
+					<view>{{item.title}}</view>
+				</navigator>
+			</view>
+		</block>
+		<view class='height_10 bg_hs'></view>
+	</block>
 
-<block wx:if='{{acticle}}'>
-<view class='height_10 bg_hs'></view>
- <block wx:for="{{acticle}}" wx:for-index="idx" wx:key="idx">
-  <view class='widt clear acticle'>
-     <navigator url='../acticle/detail?id={{item.id}}' hover-class="none">
-      <view>{{item.title}}</view>
-     </navigator>
-  </view>
- </block>
-<view class='height_10 bg_hs'></view>
-</block>
+	<view class='widt clear baokuan'>
+		<view class='font_18 fl_l'>爆款课程</view>
+		<view class='fl_r color_hui' bindtap='link' data-link='../course/list?is_hot=1'>更多</view>
+		<view class='clear'>
+			<block wx:for="{{hot_course_list}}" wx:for-index="idx" wx:key="idx">
+				<navigator url='../course/detail?id={{item.id}}' class='item bbe' hover-class="none">
+					<view class='fl_l w35' style='margin-right:5%;'>
+						<image src="{{item.banner?item.banner:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image>
+					</view>
+					<view class='fl_l w60'>
+						<view class='font_16'>{{item.course_name}}</view>
+						<view class='clear color_hui'>
+							<view class='fl_l'>{{item.organization_name}}</view>
+							<view class='fl_r'>{{item.juli}}</view>
+						</view>
+						<view class='clear gou'>
+							<view class='fl_l font_18 color_hong'>￥{{item.price}}</view>
+							<view class='fl_r color_hui'>已购：{{item.buy_count}}</view>
+						</view>
+					</view>
+				</navigator>
+			</block>
+		</view>
+	</view>
 
-<view class='widt clear baokuan'>
-  <view class='font_18 fl_l'>爆款课程</view>
-  <view class='fl_r color_hui' bindtap='link' data-link='../course/list?is_hot=1' >更多</view>
-  <view class='clear'>
-    <block wx:for="{{hot_course_list}}" wx:for-index="idx" wx:key="idx">
-      <navigator url='../course/detail?id={{item.id}}' class='item bbe' hover-class="none">
-       <view class='fl_l w35' style='margin-right:5%;'><image src="{{item.banner?item.banner:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image></view>
-       <view class='fl_l w60'>
-         <view class='font_16'>{{item.course_name}}</view>
-         <view class='clear color_hui'><view class='fl_l'>{{item.organization_name}}</view><view class='fl_r'>{{item.juli}}</view></view>
-         <view class='clear gou'>
-           <view class='fl_l font_18 color_hong'>￥{{item.price}}</view>
-           <view class='fl_r color_hui'>已购：{{item.buy_count}}</view>
-         </view>
-       </view>
-      </navigator>
-    </block>
-  </view>
-</view>
+	<view class='height_10 bg_hs'></view>
 
-<view class='height_10 bg_hs'></view>
+	<view class='widt clear fujin'>
+		<view class='font_18 fl_l'>附近课程</view>
+		<view class='fl_r color_hui' bindtap='link' data-link='../course/list?sort=3'>更多</view>
+		<view class='clear'>
+			<block wx:for="{{near_course_list}}" wx:for-index="idx" wx:key="idx">
+				<navigator url='../course/detail?id={{item.id}}' class='item bbe' hover-class="none">
+					<view class='fl_l w35' style='margin-right:5%;'>
+						<image lazy-load="true" src="{{item.banner?item.banner:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image>
+					</view>
+					<view class='fl_l w60'>
+						<view class='font_16'>{{item.course_name}}</view>
+						<view class='clear color_hui'>{{item.organization_name}}</view>
+						<view class='clear gou'>
+							<view class='fl_l color_hui font_12'>已试听：{{item.buy_count}}</view>
+							<view class='fl_r'>
+								<view class='bg_cs button color_bai tc' style='padding:0 10px;'>免费试听</view>
+							</view>
+						</view>
+					</view>
+				</navigator>
+			</block>
+		</view>
+	</view>
 
-<view class='widt clear fujin'>
-  <view class='font_18 fl_l'>附近课程</view>
-  <view class='fl_r color_hui' bindtap='link' data-link='../course/list?sort=3'>更多</view>
-  <view class='clear'>
-    <block wx:for="{{near_course_list}}" wx:for-index="idx" wx:key="idx">
-      <navigator url='../course/detail?id={{item.id}}' class='item bbe' hover-class="none">
-       <view class='fl_l w35' style='margin-right:5%;'><image src="{{item.banner?item.banner:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image></view>
-       <view class='fl_l w60'>
-         <view class='font_16'>{{item.course_name}}</view>
-         <view class='clear color_hui'>{{item.organization_name}}</view>
-         <view class='clear gou'>
-           <view class='fl_l color_hui font_12'>已试听：{{item.buy_count}}</view>
-           <view class='fl_r'><view class='bg_cs button color_bai tc' style='padding:0 10px;'>免费试听</view></view>
-         </view>
-       </view>
-      </navigator>
-    </block>
-  </view>
-</view>
+	<view class='height_10 bg_hs'></view>
+	<view class='widt clear jigou'>
+		<view class='font_18 fl_l'>附近机构</view>
+		<view class='fl_r color_hui' bindtap='link' data-link='../organiza/list'>更多</view>
+		<view class='clear'>
+			<block wx:for="{{near_organization_list}}" wx:for-index="idx" wx:key="idx">
+				<navigator url='../organiza/detail?id={{item.id}}' class='item bbe' hover-class="none">
+					<view class='fl_l w35' style='margin-right:5%;'>
+						<image src="{{item.logo?item.logo:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image>
+					</view>
+					<view class='fl_l w60'>
+						<view class='font_16'>{{item.name}}</view>
+						<view class='clear color_hui'>
+							<view class='fl_l'>{{item.address}}</view>
+							<view class='fl_r'>{{item.juli}}</view>
+						</view>
+						<view class='clear gou'>
+							<block wx:for="{{item.shuoming}}" wx:for-item="bb">
+								<view class='fl_l' style='margin-rgint:5px;display:flex'>
+									<view class='font_14 bg_bts  button' style='margin-right:5px;padding: 0 5px;height: 30px;line-height:30px;text-align: center;'>{{bb}}</view>
+								</view>
 
-<view class='height_10 bg_hs'></view>
-<view class='widt clear jigou'>
-  <view class='font_18 fl_l'>附近机构</view>
-  <view class='fl_r color_hui' bindtap='link' data-link='../organiza/list'>更多</view>
-  <view class='clear'>
-    <block wx:for="{{near_organization_list}}" wx:for-index="idx" wx:key="idx">
-      <navigator url='../organiza/detail?id={{item.id}}' class='item bbe' hover-class="none">
-       <view class='fl_l w35' style='margin-right:5%;'><image src="{{item.logo?item.logo:'../../images/b9fcb37a684ce323e10227c0f382b51.png'}}" mode="aspectFill"></image></view>
-       <view class='fl_l w60'>
-         <view class='font_16'>{{item.name}}</view>
-         <view class='clear color_hui'><view class='fl_l'>{{item.address}}</view><view class='fl_r'>{{item.juli}}</view></view>
-         <view class='clear gou'>
-          <block wx:for="{{item.shuoming}}" wx:for-item="bb" >
-           <view class='fl_l' style='margin-rgint:5px;display:flex'><view class='font_14 bg_bts  button' style='margin-right:5px;padding: 0 5px;height: 30px;line-height:30px;text-align: center;'>{{bb}}</view></view>
-           
-           </block>
-         </view>
-       </view>
-      </navigator>
-    </block>
-  </view>
-</view>
+							</block>
+						</view>
+					</view>
+				</navigator>
+			</block>
+		</view>
+	</view>
 
-<view class='widt fotter tc color_hui' bindtap="tel">
-   <image src='../../images/tel.png'></image>客服热线：4006-985-017
-</view>
+	<view class='widt fotter tc color_hui' bindtap="tel">
+		<image src='../../images/tel.png'></image>客服热线：4006-985-017
+	</view>
+
+	<button open-type="contact" class="kefu">
+		<image src="../../images/kefu.png"></image>
+		<view>客服</view>
+	</button>
 </view>

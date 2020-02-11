@@ -78,6 +78,8 @@ Page({
     var tel = e.detail.value.tel;
     var parameterList = this.data.parameter;
     var age_id = 0;
+    console.log(app.d.userID)
+    console.log(app.globalData.userID)
     for (var i = 0; i < parameterList.length; i++) {
       if (parameterList[i].checked == true) {
         age_id = parameterList[i].id;
@@ -102,7 +104,7 @@ Page({
           data: {
             name: sqr,
             tel: tel,
-            user_id: app.d.userID,
+            user_id: app.d.userID||app.globalData.userID,
             age_id: age_id,
             total_fee: 0,
             course_id: that.data.detail.id,

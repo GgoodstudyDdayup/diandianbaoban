@@ -153,5 +153,16 @@ Page({
     })
   },
   onShareAppMessage: function () {
+  },
+  jiazhang(){
+    wx.navigateToMiniProgram({
+      appId: 'wxd205480df218d810',//小程序appid
+      path: 'pages/index/index',//跳转关联小程序app.json配置里面的地址
+    })
+  },
+  tab(){
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
   }
 })

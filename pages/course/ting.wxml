@@ -40,3 +40,7 @@ open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手�
    <image src='../../images/tel.png'></image>客服热线：4006-985-017
 </view>
 </view>
+<button open-type="contact" class="kefu">
+		<image src="../../images/kefu.png"></image>
+		<view>客服</view>
+	</button>
